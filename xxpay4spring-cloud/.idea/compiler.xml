@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="xxpay-config" />
+        <module name="xxpay-gateway" />
+        <module name="xxpay-server" />
+        <module name="xxpay-service" />
+        <module name="xxpay-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="xxpay-config" target="1.8" />
+      <module name="xxpay-gateway" target="1.8" />
+      <module name="xxpay-server" target="1.8" />
+      <module name="xxpay-service" target="1.8" />
+      <module name="xxpay-web" target="1.8" />
+      <module name="xxpay4spring-cloud" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

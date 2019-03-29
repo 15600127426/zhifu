@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/xxpay-config/xxpay-config.iml" filepath="$PROJECT_DIR$/xxpay-config/xxpay-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xxpay-gateway/xxpay-gateway.iml" filepath="$PROJECT_DIR$/xxpay-gateway/xxpay-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xxpay-server/xxpay-server.iml" filepath="$PROJECT_DIR$/xxpay-server/xxpay-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xxpay-service/xxpay-service.iml" filepath="$PROJECT_DIR$/xxpay-service/xxpay-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xxpay-web/xxpay-web.iml" filepath="$PROJECT_DIR$/xxpay-web/xxpay-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xxpay4spring-cloud.iml" filepath="$PROJECT_DIR$/xxpay4spring-cloud.iml" />
+    </modules>
+  </component>
+</project>
