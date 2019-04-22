@@ -7,7 +7,7 @@
     <properties resource="generator.properties"></properties>
 
     <!-- 驱动包 -->
-    <classPathEntry location="${classPathEntry}" />
+    <classPathEntry location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.1.34\mysql-connector-java-5.1.34.jar" />
 
     <context id="MysqlContext" targetRuntime="MyBatis3" defaultModelType="flat">
 
@@ -39,10 +39,10 @@
         </commentGenerator>
 
         <!-- 数据库连接 -->
-        <jdbcConnection driverClass="${generator.jdbc.driver}"
-                        connectionURL="${generator.jdbc.url}"
-                        userId="${generator.jdbc.username}"
-                        password="${generator.jdbc.password}"/>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/xxpay"
+                        userId="root"
+                        password="root"/>
 
         <!-- model生成 -->
         <javaModelGenerator targetPackage="org.xxpay.dal.dao.model" targetProject="src/main/java"/>
@@ -59,8 +59,31 @@
         <table tableName="t_mch_info" domainObjectName="MchInfo"><property name="useActualColumnNames" value="true" /></table>
         <table tableName="t_iap_receipt" domainObjectName="IapReceipt"><property name="useActualColumnNames" value="true" /></table>-->
 
-        <table tableName="t_trans_order" domainObjectName="TransOrder"><property name="useActualColumnNames" value="true" /></table>
+        <!--<table tableName="t_trans_order" domainObjectName="TransOrder"><property name="useActualColumnNames" value="true" /></table>
         <table tableName="t_refund_order" domainObjectName="RefundOrder"><property name="useActualColumnNames" value="true" /></table>
-        <!--<table tableName="t_mch_notify" domainObjectName="MchNotify"><property name="useActualColumnNames" value="true" /></table>-->
+        <table tableName="t_mch_notify" domainObjectName="MchNotify"><property name="useActualColumnNames" value="true" /></table>
+        <table tableName="pms_menu" domainObjectName="PmsMenu"><property name="useActualColumnNames" value="true" /></table>
+        <table tableName="pms_menu_role" domainObjectName="PmsMenuRole"><property name="useActualColumnNames" value="true" /></table>
+        <table tableName="pms_operator" domainObjectName="PmsOperator"><property name="useActualColumnNames" value="true" /></table>
+        <table tableName="pms_operator_log" domainObjectName="PmsOperatorLog"><property name="useActualColumnNames" value="true" /></table>
+        <table tableName="pms_permission" domainObjectName="PmsPermission"><property name="useActualColumnNames" value="true" /></table>
+        <table tableName="pms_role" domainObjectName="PmsRole"><property name="useActualColumnNames" value="true" /></table>
+        <table tableName="pms_role_operator" domainObjectName="PmsRoleOperator"><property name="useActualColumnNames" value="true" /></table>
+        <table tableName="pms_role_permission" domainObjectName="PmsRolePermission"><property name="useActualColumnNames" value="true" /></table>
+        <table tableName="rp_account" domainObjectName="RpAccount"><property name="useActualColumnNames" value="true" /></table>
+        <table tableName="rp_account_check_batch" domainObjectName="RpAccountCheckBatch"><property name="useActualColumnNames" value="true" /></table>
+        <table tableName="rp_account_check_mistake" domainObjectName="RpAccountCheck_mistake"><property name="useActualColumnNames" value="true" /></table>
+        <table tableName="rp_account_check_mistake_scratch_pool" domainObjectName="RpAccountCheckMistakeScratchPool"><property name="useActualColumnNames" value="true" /></table>
+        <table tableName="rp_account_history" domainObjectName="RpAccountHistory"><property name="useActualColumnNames" value="true" /></table>
+        <table tableName="rp_micro_submit_record" domainObjectName="RpMicroSubmitRecord"><property name="useActualColumnNames" value="true" /></table>
+        <table tableName="rp_notify_record" domainObjectName="RpNotifyRecord"><property name="useActualColumnNames" value="true" /></table>
+        <table tableName="rp_notify_record_log" domainObjectName="RpNotifyRecordLog"><property name="useActualColumnNames" value="true" /></table>-->
+        <table tableName="rp_sett_daily_collect" domainObjectName="RpSettDailyCollect"><property name="useActualColumnNames" value="true" /></table>
+        <table tableName="rp_sett_record" domainObjectName="RpSettRecord"><property name="useActualColumnNames" value="true" /></table>
+        <table tableName="rp_sett_record_annex" domainObjectName="RpSettRecordAnnex"><property name="useActualColumnNames" value="true" /></table>
+        <table tableName="rp_trade_payment_order" domainObjectName="RpTradePaymentOrder"><property name="useActualColumnNames" value="true" /></table>
+        <table tableName="rp_trade_payment_record" domainObjectName="RpTradePaymentRecord"><property name="useActualColumnNames" value="true" /></table>
+        <table tableName="rp_user_bank_account" domainObjectName="RpUserBankAccount"><property name="useActualColumnNames" value="true" /></table>
+        <table tableName="rp_user_info" domainObjectName="RpUserInfo"><property name="useActualColumnNames" value="true" /></table>
     </context>
 </generatorConfiguration>

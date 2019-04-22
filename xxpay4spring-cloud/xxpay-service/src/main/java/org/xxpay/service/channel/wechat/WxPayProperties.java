@@ -7,10 +7,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 /**
- * User: rizenguo
- * Date: 2014/10/29
- * Time: 14:40
- * 这里放置各种配置数据
  */
 @RefreshScope
 @Service

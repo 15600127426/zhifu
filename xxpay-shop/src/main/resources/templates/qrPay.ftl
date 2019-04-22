@@ -27,7 +27,7 @@
         </tr>
         <tr>
             <td>收款方</td>
-            <td class="fr">北京骏易科技有限公司</td>
+            <td class="fr">我</td>
         </tr>
     </table>
 </div>

@@ -8,10 +8,6 @@ import javax.jms.Queue;
 
 /**
  * @Description:
- * @author dingzhiwei jmdhappy@126.com
- * @date 2017-07-05
- * @version V1.0
- * @Copyright: www.xxpay.org
  */
 @Configuration
 public class MqConfig {

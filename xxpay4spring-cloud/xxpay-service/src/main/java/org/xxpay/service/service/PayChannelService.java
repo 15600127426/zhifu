@@ -34,7 +34,7 @@ public class PayChannelService {
     public PayChannel getRandomActiveChannel(String ChannelName){
         PayChannelExample example = new PayChannelExample();
         PayChannelExample.Criteria criteria = example.createCriteria();
-        criteria.andChannelIdEqualTo(ChannelName);
+        criteria.andChannelNameEqualTo(ChannelName);
         List<PayChannel> payChannelList=payChannelMapper.selectByExample(example);
         if(CollectionUtils.isEmpty(payChannelList)) return null;
         int random = (int) (Math.random() * payChannelList.size());

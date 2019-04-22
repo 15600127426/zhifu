@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.xxpay.dal.dao.mapper.RpAccountHistoryMapper" >
+  <resultMap id="BaseResultMap" type="org.xxpay.dal.dao.account.entity.RpAccountHistory" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+    <result column="edit_time" property="edit_time" jdbcType="TIMESTAMP" />
+    <result column="version" property="version" jdbcType="BIGINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="account_no" property="account_no" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="fund_direction" property="fund_direction" jdbcType="VARCHAR" />
+    <result column="is_allow_sett" property="is_allow_sett" jdbcType="VARCHAR" />
+    <result column="is_complete_sett" property="is_complete_sett" jdbcType="VARCHAR" />
+    <result column="request_no" property="request_no" jdbcType="VARCHAR" />
+    <result column="bank_trx_no" property="bank_trx_no" jdbcType="VARCHAR" />
+    <result column="trx_type" property="trx_type" jdbcType="VARCHAR" />
+    <result column="risk_day" property="risk_day" jdbcType="INTEGER" />
+    <result column="user_no" property="user_no" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, create_time, edit_time, version, remark, account_no, amount, balance, fund_direction, 
+    is_allow_sett, is_complete_sett, request_no, bank_trx_no, trx_type, risk_day, user_no
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.xxpay.dal.dao.account.entity.RpAccountHistoryExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rp_account_history
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null" >
+      <if test="offset != null" >
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null" >
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from rp_account_history
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from rp_account_history
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.xxpay.dal.dao.account.entity.RpAccountHistoryExample" >
+    delete from rp_account_history
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.xxpay.dal.dao.account.entity.RpAccountHistory" >
+    insert into rp_account_history (id, create_time, edit_time, 
+      version, remark, account_no, 
+      amount, balance, fund_direction, 
+      is_allow_sett, is_complete_sett, request_no, 
+      bank_trx_no, trx_type, risk_day, 
+      user_no)
+    values (#{id,jdbcType=VARCHAR}, #{create_time,jdbcType=TIMESTAMP}, #{edit_time,jdbcType=TIMESTAMP}, 
+      #{version,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR}, #{account_no,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DECIMAL}, #{balance,jdbcType=DECIMAL}, #{fund_direction,jdbcType=VARCHAR}, 
+      #{is_allow_sett,jdbcType=VARCHAR}, #{is_complete_sett,jdbcType=VARCHAR}, #{request_no,jdbcType=VARCHAR}, 
+      #{bank_trx_no,jdbcType=VARCHAR}, #{trx_type,jdbcType=VARCHAR}, #{risk_day,jdbcType=INTEGER}, 
+      #{user_no,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.xxpay.dal.dao.account.entity.RpAccountHistory" >
+    insert into rp_account_history
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="create_time != null" >
+        create_time,
+      </if>
+      <if test="edit_time != null" >
+        edit_time,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="account_no != null" >
+        account_no,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="fund_direction != null" >
+        fund_direction,
+      </if>
+      <if test="is_allow_sett != null" >
+        is_allow_sett,
+      </if>
+      <if test="is_complete_sett != null" >
+        is_complete_sett,
+      </if>
+      <if test="request_no != null" >
+        request_no,
+      </if>
+      <if test="bank_trx_no != null" >
+        bank_trx_no,
+      </if>
+      <if test="trx_type != null" >
+        trx_type,
+      </if>
+      <if test="risk_day != null" >
+        risk_day,
+      </if>
+      <if test="user_no != null" >
+        user_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="create_time != null" >
+        #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="edit_time != null" >
+        #{edit_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="account_no != null" >
+        #{account_no,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="fund_direction != null" >
+        #{fund_direction,jdbcType=VARCHAR},
+      </if>
+      <if test="is_allow_sett != null" >
+        #{is_allow_sett,jdbcType=VARCHAR},
+      </if>
+      <if test="is_complete_sett != null" >
+        #{is_complete_sett,jdbcType=VARCHAR},
+      </if>
+      <if test="request_no != null" >
+        #{request_no,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_trx_no != null" >
+        #{bank_trx_no,jdbcType=VARCHAR},
+      </if>
+      <if test="trx_type != null" >
+        #{trx_type,jdbcType=VARCHAR},
+      </if>
+      <if test="risk_day != null" >
+        #{risk_day,jdbcType=INTEGER},
+      </if>
+      <if test="user_no != null" >
+        #{user_no,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.xxpay.dal.dao.account.entity.RpAccountHistoryExample" resultType="java.lang.Integer" >
+    select count(*) from rp_account_history
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update rp_account_history
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.create_time != null" >
+        create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.edit_time != null" >
+        edit_time = #{record.edit_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=BIGINT},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.account_no != null" >
+        account_no = #{record.account_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null" >
+        amount = #{record.amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.balance != null" >
+        balance = #{record.balance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fund_direction != null" >
+        fund_direction = #{record.fund_direction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.is_allow_sett != null" >
+        is_allow_sett = #{record.is_allow_sett,jdbcType=VARCHAR},
+      </if>
+      <if test="record.is_complete_sett != null" >
+        is_complete_sett = #{record.is_complete_sett,jdbcType=VARCHAR},
+      </if>
+      <if test="record.request_no != null" >
+        request_no = #{record.request_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bank_trx_no != null" >
+        bank_trx_no = #{record.bank_trx_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trx_type != null" >
+        trx_type = #{record.trx_type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.risk_day != null" >
+        risk_day = #{record.risk_day,jdbcType=INTEGER},
+      </if>
+      <if test="record.user_no != null" >
+        user_no = #{record.user_no,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update rp_account_history
+    set id = #{record.id,jdbcType=VARCHAR},
+      create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      edit_time = #{record.edit_time,jdbcType=TIMESTAMP},
+      version = #{record.version,jdbcType=BIGINT},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      account_no = #{record.account_no,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=DECIMAL},
+      balance = #{record.balance,jdbcType=DECIMAL},
+      fund_direction = #{record.fund_direction,jdbcType=VARCHAR},
+      is_allow_sett = #{record.is_allow_sett,jdbcType=VARCHAR},
+      is_complete_sett = #{record.is_complete_sett,jdbcType=VARCHAR},
+      request_no = #{record.request_no,jdbcType=VARCHAR},
+      bank_trx_no = #{record.bank_trx_no,jdbcType=VARCHAR},
+      trx_type = #{record.trx_type,jdbcType=VARCHAR},
+      risk_day = #{record.risk_day,jdbcType=INTEGER},
+      user_no = #{record.user_no,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.xxpay.dal.dao.account.entity.RpAccountHistory" >
+    update rp_account_history
+    <set >
+      <if test="create_time != null" >
+        create_time = #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="edit_time != null" >
+        edit_time = #{edit_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="account_no != null" >
+        account_no = #{account_no,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="fund_direction != null" >
+        fund_direction = #{fund_direction,jdbcType=VARCHAR},
+      </if>
+      <if test="is_allow_sett != null" >
+        is_allow_sett = #{is_allow_sett,jdbcType=VARCHAR},
+      </if>
+      <if test="is_complete_sett != null" >
+        is_complete_sett = #{is_complete_sett,jdbcType=VARCHAR},
+      </if>
+      <if test="request_no != null" >
+        request_no = #{request_no,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_trx_no != null" >
+        bank_trx_no = #{bank_trx_no,jdbcType=VARCHAR},
+      </if>
+      <if test="trx_type != null" >
+        trx_type = #{trx_type,jdbcType=VARCHAR},
+      </if>
+      <if test="risk_day != null" >
+        risk_day = #{risk_day,jdbcType=INTEGER},
+      </if>
+      <if test="user_no != null" >
+        user_no = #{user_no,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.xxpay.dal.dao.account.entity.RpAccountHistory" >
+    update rp_account_history
+    set create_time = #{create_time,jdbcType=TIMESTAMP},
+      edit_time = #{edit_time,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      account_no = #{account_no,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      balance = #{balance,jdbcType=DECIMAL},
+      fund_direction = #{fund_direction,jdbcType=VARCHAR},
+      is_allow_sett = #{is_allow_sett,jdbcType=VARCHAR},
+      is_complete_sett = #{is_complete_sett,jdbcType=VARCHAR},
+      request_no = #{request_no,jdbcType=VARCHAR},
+      bank_trx_no = #{bank_trx_no,jdbcType=VARCHAR},
+      trx_type = #{trx_type,jdbcType=VARCHAR},
+      risk_day = #{risk_day,jdbcType=INTEGER},
+      user_no = #{user_no,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

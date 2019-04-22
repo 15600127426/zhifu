@@ -13,14 +13,14 @@ import java.util.Map;
 public class PayOrderDemo {
 
     // 商户ID
-    static final String mchId = "20001223";//20001223,20001245
+    static final String mchId = "10000000";//20001223,20001245
     // 加签key
-    static final String reqKey = "M86l522AV6q613Ii4W6u8K48uW8vM1N6bFgyv769220MdYe9u37N4y7rI5mQ";
+    static final String reqKey = "adfdhgssssssssss";
     // 验签key
-    static final String repKey = "Hpcl522AV6q613KIi46u6g6XuW8vM1N8bFgyv769770MdYe9u37M4y7rIpl8";
+    static final String repKey = "aaaaaadswawd";
 
     //static final String baseUrl = "http://api.xxpay.org/api";
-    static final String baseUrl = "http://localhost:3020/api";
+    static final String baseUrl = "http://27.159.82.13:3020/api/";
     //static final String notifyUrl = "http://www.baidu.com"; // 本地环境测试,可到ngrok.cc网站注册
     static final String notifyUrl = "http://shop.xxpay.org/goods/payNotify";
 
@@ -38,10 +38,10 @@ public class PayOrderDemo {
         paramMap.put("channelId", "WX_NATIVE");
         paramMap.put("amount", 1);                                  // 支付金额,单位分
         paramMap.put("currency", "cny");                            // 币种, cny-人民币
-        paramMap.put("clientIp", "211.94.116.218");                 // 用户地址,微信H5支付时要真实的
+        paramMap.put("clientIp", "103.231.60.70");                 // 用户地址,微信H5支付时要真实的
         paramMap.put("device", "WEB");                              // 设备
-        paramMap.put("subject", "XXPAY支付测试");
-        paramMap.put("body", "XXPAY支付测试");
+        paramMap.put("subject", "wx");
+        paramMap.put("body", "wx");
         paramMap.put("notifyUrl", notifyUrl);                       // 回调URL
         paramMap.put("param1", "");                                 // 扩展参数1
         paramMap.put("param2", "");                                 // 扩展参数2

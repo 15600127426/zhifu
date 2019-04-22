@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.xxpay.dal.dao.mapper.RpMicroSubmitRecordMapper" >
+  <resultMap id="BaseResultMap" type="org.xxpay.dal.dao.model.RpMicroSubmitRecord" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+    <result column="creater" property="creater" jdbcType="VARCHAR" />
+    <result column="edit_time" property="edit_time" jdbcType="TIMESTAMP" />
+    <result column="editor" property="editor" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="business_code" property="business_code" jdbcType="VARCHAR" />
+    <result column="sub_mch_id" property="sub_mch_id" jdbcType="VARCHAR" />
+    <result column="id_card_copy" property="id_card_copy" jdbcType="VARCHAR" />
+    <result column="id_card_national" property="id_card_national" jdbcType="VARCHAR" />
+    <result column="id_card_name" property="id_card_name" jdbcType="VARCHAR" />
+    <result column="id_card_number" property="id_card_number" jdbcType="VARCHAR" />
+    <result column="id_card_valid_time" property="id_card_valid_time" jdbcType="VARCHAR" />
+    <result column="account_bank" property="account_bank" jdbcType="VARCHAR" />
+    <result column="bank_address_code" property="bank_address_code" jdbcType="VARCHAR" />
+    <result column="account_number" property="account_number" jdbcType="VARCHAR" />
+    <result column="store_name" property="store_name" jdbcType="VARCHAR" />
+    <result column="store_address_code" property="store_address_code" jdbcType="VARCHAR" />
+    <result column="store_street" property="store_street" jdbcType="VARCHAR" />
+    <result column="store_entrance_pic" property="store_entrance_pic" jdbcType="VARCHAR" />
+    <result column="indoor_pic" property="indoor_pic" jdbcType="VARCHAR" />
+    <result column="merchant_shortname" property="merchant_shortname" jdbcType="VARCHAR" />
+    <result column="service_phone" property="service_phone" jdbcType="VARCHAR" />
+    <result column="product_desc" property="product_desc" jdbcType="VARCHAR" />
+    <result column="rate" property="rate" jdbcType="VARCHAR" />
+    <result column="contact_phone" property="contact_phone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, version, create_time, creater, edit_time, editor, status, business_code, sub_mch_id, 
+    id_card_copy, id_card_national, id_card_name, id_card_number, id_card_valid_time, 
+    account_bank, bank_address_code, account_number, store_name, store_address_code, 
+    store_street, store_entrance_pic, indoor_pic, merchant_shortname, service_phone, 
+    product_desc, rate, contact_phone
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.xxpay.dal.dao.model.RpMicroSubmitRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rp_micro_submit_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null" >
+      <if test="offset != null" >
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null" >
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from rp_micro_submit_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from rp_micro_submit_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.xxpay.dal.dao.model.RpMicroSubmitRecordExample" >
+    delete from rp_micro_submit_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.xxpay.dal.dao.model.RpMicroSubmitRecord" >
+    insert into rp_micro_submit_record (id, version, create_time, 
+      creater, edit_time, editor, 
+      status, business_code, sub_mch_id, 
+      id_card_copy, id_card_national, id_card_name, 
+      id_card_number, id_card_valid_time, account_bank, 
+      bank_address_code, account_number, store_name, 
+      store_address_code, store_street, store_entrance_pic, 
+      indoor_pic, merchant_shortname, service_phone, 
+      product_desc, rate, contact_phone
+      )
+    values (#{id,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, #{create_time,jdbcType=TIMESTAMP}, 
+      #{creater,jdbcType=VARCHAR}, #{edit_time,jdbcType=TIMESTAMP}, #{editor,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{business_code,jdbcType=VARCHAR}, #{sub_mch_id,jdbcType=VARCHAR}, 
+      #{id_card_copy,jdbcType=VARCHAR}, #{id_card_national,jdbcType=VARCHAR}, #{id_card_name,jdbcType=VARCHAR}, 
+      #{id_card_number,jdbcType=VARCHAR}, #{id_card_valid_time,jdbcType=VARCHAR}, #{account_bank,jdbcType=VARCHAR}, 
+      #{bank_address_code,jdbcType=VARCHAR}, #{account_number,jdbcType=VARCHAR}, #{store_name,jdbcType=VARCHAR}, 
+      #{store_address_code,jdbcType=VARCHAR}, #{store_street,jdbcType=VARCHAR}, #{store_entrance_pic,jdbcType=VARCHAR}, 
+      #{indoor_pic,jdbcType=VARCHAR}, #{merchant_shortname,jdbcType=VARCHAR}, #{service_phone,jdbcType=VARCHAR}, 
+      #{product_desc,jdbcType=VARCHAR}, #{rate,jdbcType=VARCHAR}, #{contact_phone,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.xxpay.dal.dao.model.RpMicroSubmitRecord" >
+    insert into rp_micro_submit_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="create_time != null" >
+        create_time,
+      </if>
+      <if test="creater != null" >
+        creater,
+      </if>
+      <if test="edit_time != null" >
+        edit_time,
+      </if>
+      <if test="editor != null" >
+        editor,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="business_code != null" >
+        business_code,
+      </if>
+      <if test="sub_mch_id != null" >
+        sub_mch_id,
+      </if>
+      <if test="id_card_copy != null" >
+        id_card_copy,
+      </if>
+      <if test="id_card_national != null" >
+        id_card_national,
+      </if>
+      <if test="id_card_name != null" >
+        id_card_name,
+      </if>
+      <if test="id_card_number != null" >
+        id_card_number,
+      </if>
+      <if test="id_card_valid_time != null" >
+        id_card_valid_time,
+      </if>
+      <if test="account_bank != null" >
+        account_bank,
+      </if>
+      <if test="bank_address_code != null" >
+        bank_address_code,
+      </if>
+      <if test="account_number != null" >
+        account_number,
+      </if>
+      <if test="store_name != null" >
+        store_name,
+      </if>
+      <if test="store_address_code != null" >
+        store_address_code,
+      </if>
+      <if test="store_street != null" >
+        store_street,
+      </if>
+      <if test="store_entrance_pic != null" >
+        store_entrance_pic,
+      </if>
+      <if test="indoor_pic != null" >
+        indoor_pic,
+      </if>
+      <if test="merchant_shortname != null" >
+        merchant_shortname,
+      </if>
+      <if test="service_phone != null" >
+        service_phone,
+      </if>
+      <if test="product_desc != null" >
+        product_desc,
+      </if>
+      <if test="rate != null" >
+        rate,
+      </if>
+      <if test="contact_phone != null" >
+        contact_phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null" >
+        #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="edit_time != null" >
+        #{edit_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editor != null" >
+        #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="business_code != null" >
+        #{business_code,jdbcType=VARCHAR},
+      </if>
+      <if test="sub_mch_id != null" >
+        #{sub_mch_id,jdbcType=VARCHAR},
+      </if>
+      <if test="id_card_copy != null" >
+        #{id_card_copy,jdbcType=VARCHAR},
+      </if>
+      <if test="id_card_national != null" >
+        #{id_card_national,jdbcType=VARCHAR},
+      </if>
+      <if test="id_card_name != null" >
+        #{id_card_name,jdbcType=VARCHAR},
+      </if>
+      <if test="id_card_number != null" >
+        #{id_card_number,jdbcType=VARCHAR},
+      </if>
+      <if test="id_card_valid_time != null" >
+        #{id_card_valid_time,jdbcType=VARCHAR},
+      </if>
+      <if test="account_bank != null" >
+        #{account_bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_address_code != null" >
+        #{bank_address_code,jdbcType=VARCHAR},
+      </if>
+      <if test="account_number != null" >
+        #{account_number,jdbcType=VARCHAR},
+      </if>
+      <if test="store_name != null" >
+        #{store_name,jdbcType=VARCHAR},
+      </if>
+      <if test="store_address_code != null" >
+        #{store_address_code,jdbcType=VARCHAR},
+      </if>
+      <if test="store_street != null" >
+        #{store_street,jdbcType=VARCHAR},
+      </if>
+      <if test="store_entrance_pic != null" >
+        #{store_entrance_pic,jdbcType=VARCHAR},
+      </if>
+      <if test="indoor_pic != null" >
+        #{indoor_pic,jdbcType=VARCHAR},
+      </if>
+      <if test="merchant_shortname != null" >
+        #{merchant_shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="service_phone != null" >
+        #{service_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="product_desc != null" >
+        #{product_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null" >
+        #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="contact_phone != null" >
+        #{contact_phone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.xxpay.dal.dao.model.RpMicroSubmitRecordExample" resultType="java.lang.Integer" >
+    select count(*) from rp_micro_submit_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update rp_micro_submit_record
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.create_time != null" >
+        create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creater != null" >
+        creater = #{record.creater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.edit_time != null" >
+        edit_time = #{record.edit_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.editor != null" >
+        editor = #{record.editor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.business_code != null" >
+        business_code = #{record.business_code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sub_mch_id != null" >
+        sub_mch_id = #{record.sub_mch_id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.id_card_copy != null" >
+        id_card_copy = #{record.id_card_copy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.id_card_national != null" >
+        id_card_national = #{record.id_card_national,jdbcType=VARCHAR},
+      </if>
+      <if test="record.id_card_name != null" >
+        id_card_name = #{record.id_card_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.id_card_number != null" >
+        id_card_number = #{record.id_card_number,jdbcType=VARCHAR},
+      </if>
+      <if test="record.id_card_valid_time != null" >
+        id_card_valid_time = #{record.id_card_valid_time,jdbcType=VARCHAR},
+      </if>
+      <if test="record.account_bank != null" >
+        account_bank = #{record.account_bank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bank_address_code != null" >
+        bank_address_code = #{record.bank_address_code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.account_number != null" >
+        account_number = #{record.account_number,jdbcType=VARCHAR},
+      </if>
+      <if test="record.store_name != null" >
+        store_name = #{record.store_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.store_address_code != null" >
+        store_address_code = #{record.store_address_code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.store_street != null" >
+        store_street = #{record.store_street,jdbcType=VARCHAR},
+      </if>
+      <if test="record.store_entrance_pic != null" >
+        store_entrance_pic = #{record.store_entrance_pic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.indoor_pic != null" >
+        indoor_pic = #{record.indoor_pic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.merchant_shortname != null" >
+        merchant_shortname = #{record.merchant_shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.service_phone != null" >
+        service_phone = #{record.service_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.product_desc != null" >
+        product_desc = #{record.product_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rate != null" >
+        rate = #{record.rate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contact_phone != null" >
+        contact_phone = #{record.contact_phone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update rp_micro_submit_record
+    set id = #{record.id,jdbcType=VARCHAR},
+      version = #{record.version,jdbcType=INTEGER},
+      create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      creater = #{record.creater,jdbcType=VARCHAR},
+      edit_time = #{record.edit_time,jdbcType=TIMESTAMP},
+      editor = #{record.editor,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      business_code = #{record.business_code,jdbcType=VARCHAR},
+      sub_mch_id = #{record.sub_mch_id,jdbcType=VARCHAR},
+      id_card_copy = #{record.id_card_copy,jdbcType=VARCHAR},
+      id_card_national = #{record.id_card_national,jdbcType=VARCHAR},
+      id_card_name = #{record.id_card_name,jdbcType=VARCHAR},
+      id_card_number = #{record.id_card_number,jdbcType=VARCHAR},
+      id_card_valid_time = #{record.id_card_valid_time,jdbcType=VARCHAR},
+      account_bank = #{record.account_bank,jdbcType=VARCHAR},
+      bank_address_code = #{record.bank_address_code,jdbcType=VARCHAR},
+      account_number = #{record.account_number,jdbcType=VARCHAR},
+      store_name = #{record.store_name,jdbcType=VARCHAR},
+      store_address_code = #{record.store_address_code,jdbcType=VARCHAR},
+      store_street = #{record.store_street,jdbcType=VARCHAR},
+      store_entrance_pic = #{record.store_entrance_pic,jdbcType=VARCHAR},
+      indoor_pic = #{record.indoor_pic,jdbcType=VARCHAR},
+      merchant_shortname = #{record.merchant_shortname,jdbcType=VARCHAR},
+      service_phone = #{record.service_phone,jdbcType=VARCHAR},
+      product_desc = #{record.product_desc,jdbcType=VARCHAR},
+      rate = #{record.rate,jdbcType=VARCHAR},
+      contact_phone = #{record.contact_phone,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.xxpay.dal.dao.model.RpMicroSubmitRecord" >
+    update rp_micro_submit_record
+    <set >
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null" >
+        create_time = #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null" >
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="edit_time != null" >
+        edit_time = #{edit_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editor != null" >
+        editor = #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="business_code != null" >
+        business_code = #{business_code,jdbcType=VARCHAR},
+      </if>
+      <if test="sub_mch_id != null" >
+        sub_mch_id = #{sub_mch_id,jdbcType=VARCHAR},
+      </if>
+      <if test="id_card_copy != null" >
+        id_card_copy = #{id_card_copy,jdbcType=VARCHAR},
+      </if>
+      <if test="id_card_national != null" >
+        id_card_national = #{id_card_national,jdbcType=VARCHAR},
+      </if>
+      <if test="id_card_name != null" >
+        id_card_name = #{id_card_name,jdbcType=VARCHAR},
+      </if>
+      <if test="id_card_number != null" >
+        id_card_number = #{id_card_number,jdbcType=VARCHAR},
+      </if>
+      <if test="id_card_valid_time != null" >
+        id_card_valid_time = #{id_card_valid_time,jdbcType=VARCHAR},
+      </if>
+      <if test="account_bank != null" >
+        account_bank = #{account_bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_address_code != null" >
+        bank_address_code = #{bank_address_code,jdbcType=VARCHAR},
+      </if>
+      <if test="account_number != null" >
+        account_number = #{account_number,jdbcType=VARCHAR},
+      </if>
+      <if test="store_name != null" >
+        store_name = #{store_name,jdbcType=VARCHAR},
+      </if>
+      <if test="store_address_code != null" >
+        store_address_code = #{store_address_code,jdbcType=VARCHAR},
+      </if>
+      <if test="store_street != null" >
+        store_street = #{store_street,jdbcType=VARCHAR},
+      </if>
+      <if test="store_entrance_pic != null" >
+        store_entrance_pic = #{store_entrance_pic,jdbcType=VARCHAR},
+      </if>
+      <if test="indoor_pic != null" >
+        indoor_pic = #{indoor_pic,jdbcType=VARCHAR},
+      </if>
+      <if test="merchant_shortname != null" >
+        merchant_shortname = #{merchant_shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="service_phone != null" >
+        service_phone = #{service_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="product_desc != null" >
+        product_desc = #{product_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null" >
+        rate = #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="contact_phone != null" >
+        contact_phone = #{contact_phone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.xxpay.dal.dao.model.RpMicroSubmitRecord" >
+    update rp_micro_submit_record
+    set version = #{version,jdbcType=INTEGER},
+      create_time = #{create_time,jdbcType=TIMESTAMP},
+      creater = #{creater,jdbcType=VARCHAR},
+      edit_time = #{edit_time,jdbcType=TIMESTAMP},
+      editor = #{editor,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      business_code = #{business_code,jdbcType=VARCHAR},
+      sub_mch_id = #{sub_mch_id,jdbcType=VARCHAR},
+      id_card_copy = #{id_card_copy,jdbcType=VARCHAR},
+      id_card_national = #{id_card_national,jdbcType=VARCHAR},
+      id_card_name = #{id_card_name,jdbcType=VARCHAR},
+      id_card_number = #{id_card_number,jdbcType=VARCHAR},
+      id_card_valid_time = #{id_card_valid_time,jdbcType=VARCHAR},
+      account_bank = #{account_bank,jdbcType=VARCHAR},
+      bank_address_code = #{bank_address_code,jdbcType=VARCHAR},
+      account_number = #{account_number,jdbcType=VARCHAR},
+      store_name = #{store_name,jdbcType=VARCHAR},
+      store_address_code = #{store_address_code,jdbcType=VARCHAR},
+      store_street = #{store_street,jdbcType=VARCHAR},
+      store_entrance_pic = #{store_entrance_pic,jdbcType=VARCHAR},
+      indoor_pic = #{indoor_pic,jdbcType=VARCHAR},
+      merchant_shortname = #{merchant_shortname,jdbcType=VARCHAR},
+      service_phone = #{service_phone,jdbcType=VARCHAR},
+      product_desc = #{product_desc,jdbcType=VARCHAR},
+      rate = #{rate,jdbcType=VARCHAR},
+      contact_phone = #{contact_phone,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

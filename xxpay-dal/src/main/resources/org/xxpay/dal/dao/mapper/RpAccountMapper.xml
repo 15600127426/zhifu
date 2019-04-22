@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.xxpay.dal.dao.mapper.RpAccountMapper" >
+  <resultMap id="BaseResultMap" type="org.xxpay.dal.dao.account.entity.RpAccount" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+    <result column="edit_time" property="edit_time" jdbcType="TIMESTAMP" />
+    <result column="version" property="version" jdbcType="BIGINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="account_no" property="account_no" jdbcType="VARCHAR" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="unbalance" property="unbalance" jdbcType="DECIMAL" />
+    <result column="security_money" property="security_money" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="total_income" property="total_income" jdbcType="DECIMAL" />
+    <result column="total_expend" property="total_expend" jdbcType="DECIMAL" />
+    <result column="today_income" property="today_income" jdbcType="DECIMAL" />
+    <result column="today_expend" property="today_expend" jdbcType="DECIMAL" />
+    <result column="account_type" property="account_type" jdbcType="VARCHAR" />
+    <result column="sett_amount" property="sett_amount" jdbcType="DECIMAL" />
+    <result column="user_no" property="user_no" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, create_time, edit_time, version, remark, account_no, balance, unbalance, security_money, 
+    status, total_income, total_expend, today_income, today_expend, account_type, sett_amount, 
+    user_no
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.xxpay.dal.dao.account.entity.RpAccountExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rp_account
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null" >
+      <if test="offset != null" >
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null" >
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from rp_account
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from rp_account
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.xxpay.dal.dao.account.entity.RpAccountExample" >
+    delete from rp_account
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.xxpay.dal.dao.account.entity.RpAccount" >
+    insert into rp_account (id, create_time, edit_time, 
+      version, remark, account_no, 
+      balance, unbalance, security_money, 
+      status, total_income, total_expend, 
+      today_income, today_expend, account_type, 
+      sett_amount, user_no)
+    values (#{id,jdbcType=VARCHAR}, #{create_time,jdbcType=TIMESTAMP}, #{edit_time,jdbcType=TIMESTAMP}, 
+      #{version,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR}, #{account_no,jdbcType=VARCHAR}, 
+      #{balance,jdbcType=DECIMAL}, #{unbalance,jdbcType=DECIMAL}, #{security_money,jdbcType=DECIMAL}, 
+      #{status,jdbcType=VARCHAR}, #{total_income,jdbcType=DECIMAL}, #{total_expend,jdbcType=DECIMAL}, 
+      #{today_income,jdbcType=DECIMAL}, #{today_expend,jdbcType=DECIMAL}, #{account_type,jdbcType=VARCHAR}, 
+      #{sett_amount,jdbcType=DECIMAL}, #{user_no,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.xxpay.dal.dao.account.entity.RpAccount" >
+    insert into rp_account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="create_time != null" >
+        create_time,
+      </if>
+      <if test="edit_time != null" >
+        edit_time,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="account_no != null" >
+        account_no,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="unbalance != null" >
+        unbalance,
+      </if>
+      <if test="security_money != null" >
+        security_money,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="total_income != null" >
+        total_income,
+      </if>
+      <if test="total_expend != null" >
+        total_expend,
+      </if>
+      <if test="today_income != null" >
+        today_income,
+      </if>
+      <if test="today_expend != null" >
+        today_expend,
+      </if>
+      <if test="account_type != null" >
+        account_type,
+      </if>
+      <if test="sett_amount != null" >
+        sett_amount,
+      </if>
+      <if test="user_no != null" >
+        user_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="create_time != null" >
+        #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="edit_time != null" >
+        #{edit_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="account_no != null" >
+        #{account_no,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="unbalance != null" >
+        #{unbalance,jdbcType=DECIMAL},
+      </if>
+      <if test="security_money != null" >
+        #{security_money,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="total_income != null" >
+        #{total_income,jdbcType=DECIMAL},
+      </if>
+      <if test="total_expend != null" >
+        #{total_expend,jdbcType=DECIMAL},
+      </if>
+      <if test="today_income != null" >
+        #{today_income,jdbcType=DECIMAL},
+      </if>
+      <if test="today_expend != null" >
+        #{today_expend,jdbcType=DECIMAL},
+      </if>
+      <if test="account_type != null" >
+        #{account_type,jdbcType=VARCHAR},
+      </if>
+      <if test="sett_amount != null" >
+        #{sett_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="user_no != null" >
+        #{user_no,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.xxpay.dal.dao.account.entity.RpAccountExample" resultType="java.lang.Integer" >
+    select count(*) from rp_account
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update rp_account
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.create_time != null" >
+        create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.edit_time != null" >
+        edit_time = #{record.edit_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=BIGINT},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.account_no != null" >
+        account_no = #{record.account_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.balance != null" >
+        balance = #{record.balance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.unbalance != null" >
+        unbalance = #{record.unbalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.security_money != null" >
+        security_money = #{record.security_money,jdbcType=DECIMAL},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.total_income != null" >
+        total_income = #{record.total_income,jdbcType=DECIMAL},
+      </if>
+      <if test="record.total_expend != null" >
+        total_expend = #{record.total_expend,jdbcType=DECIMAL},
+      </if>
+      <if test="record.today_income != null" >
+        today_income = #{record.today_income,jdbcType=DECIMAL},
+      </if>
+      <if test="record.today_expend != null" >
+        today_expend = #{record.today_expend,jdbcType=DECIMAL},
+      </if>
+      <if test="record.account_type != null" >
+        account_type = #{record.account_type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sett_amount != null" >
+        sett_amount = #{record.sett_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.user_no != null" >
+        user_no = #{record.user_no,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update rp_account
+    set id = #{record.id,jdbcType=VARCHAR},
+      create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      edit_time = #{record.edit_time,jdbcType=TIMESTAMP},
+      version = #{record.version,jdbcType=BIGINT},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      account_no = #{record.account_no,jdbcType=VARCHAR},
+      balance = #{record.balance,jdbcType=DECIMAL},
+      unbalance = #{record.unbalance,jdbcType=DECIMAL},
+      security_money = #{record.security_money,jdbcType=DECIMAL},
+      status = #{record.status,jdbcType=VARCHAR},
+      total_income = #{record.total_income,jdbcType=DECIMAL},
+      total_expend = #{record.total_expend,jdbcType=DECIMAL},
+      today_income = #{record.today_income,jdbcType=DECIMAL},
+      today_expend = #{record.today_expend,jdbcType=DECIMAL},
+      account_type = #{record.account_type,jdbcType=VARCHAR},
+      sett_amount = #{record.sett_amount,jdbcType=DECIMAL},
+      user_no = #{record.user_no,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.xxpay.dal.dao.account.entity.RpAccount" >
+    update rp_account
+    <set >
+      <if test="create_time != null" >
+        create_time = #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="edit_time != null" >
+        edit_time = #{edit_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="account_no != null" >
+        account_no = #{account_no,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="unbalance != null" >
+        unbalance = #{unbalance,jdbcType=DECIMAL},
+      </if>
+      <if test="security_money != null" >
+        security_money = #{security_money,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="total_income != null" >
+        total_income = #{total_income,jdbcType=DECIMAL},
+      </if>
+      <if test="total_expend != null" >
+        total_expend = #{total_expend,jdbcType=DECIMAL},
+      </if>
+      <if test="today_income != null" >
+        today_income = #{today_income,jdbcType=DECIMAL},
+      </if>
+      <if test="today_expend != null" >
+        today_expend = #{today_expend,jdbcType=DECIMAL},
+      </if>
+      <if test="account_type != null" >
+        account_type = #{account_type,jdbcType=VARCHAR},
+      </if>
+      <if test="sett_amount != null" >
+        sett_amount = #{sett_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="user_no != null" >
+        user_no = #{user_no,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.xxpay.dal.dao.account.entity.RpAccount" >
+    update rp_account
+    set create_time = #{create_time,jdbcType=TIMESTAMP},
+      edit_time = #{edit_time,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      account_no = #{account_no,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=DECIMAL},
+      unbalance = #{unbalance,jdbcType=DECIMAL},
+      security_money = #{security_money,jdbcType=DECIMAL},
+      status = #{status,jdbcType=VARCHAR},
+      total_income = #{total_income,jdbcType=DECIMAL},
+      total_expend = #{total_expend,jdbcType=DECIMAL},
+      today_income = #{today_income,jdbcType=DECIMAL},
+      today_expend = #{today_expend,jdbcType=DECIMAL},
+      account_type = #{account_type,jdbcType=VARCHAR},
+      sett_amount = #{sett_amount,jdbcType=DECIMAL},
+      user_no = #{user_no,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

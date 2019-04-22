@@ -10,12 +10,7 @@ import org.xxpay.dal.dao.model.PayOrderExample;
 
 import java.util.List;
 
-/**
- * @Description:
- * @author dingzhiwei jmdhappy@126.com
- * @date 2017-07-05
- * @version V1.0
- * @Copyright: www.xxpay.org
+/*
  */
 @Component
 public class PayOrderService {

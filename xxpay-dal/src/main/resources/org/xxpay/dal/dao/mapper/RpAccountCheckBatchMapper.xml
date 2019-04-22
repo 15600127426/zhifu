@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.xxpay.dal.dao.mapper.RpAccountCheckBatchMapper" >
+  <resultMap id="BaseResultMap" type="org.xxpay.dal.dao.reconciliation.entity.RpAccountCheckBatch" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+    <result column="editor" property="editor" jdbcType="VARCHAR" />
+    <result column="creater" property="creater" jdbcType="VARCHAR" />
+    <result column="edit_time" property="edit_time" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="batch_no" property="batch_no" jdbcType="VARCHAR" />
+    <result column="bill_date" property="bill_date" jdbcType="DATE" />
+    <result column="bill_type" property="bill_type" jdbcType="VARCHAR" />
+    <result column="handle_status" property="handle_status" jdbcType="VARCHAR" />
+    <result column="bank_type" property="bank_type" jdbcType="VARCHAR" />
+    <result column="mistake_count" property="mistake_count" jdbcType="INTEGER" />
+    <result column="unhandle_mistake_count" property="unhandle_mistake_count" jdbcType="INTEGER" />
+    <result column="trade_count" property="trade_count" jdbcType="INTEGER" />
+    <result column="bank_trade_count" property="bank_trade_count" jdbcType="INTEGER" />
+    <result column="trade_amount" property="trade_amount" jdbcType="DECIMAL" />
+    <result column="bank_trade_amount" property="bank_trade_amount" jdbcType="DECIMAL" />
+    <result column="refund_amount" property="refund_amount" jdbcType="DECIMAL" />
+    <result column="bank_refund_amount" property="bank_refund_amount" jdbcType="DECIMAL" />
+    <result column="bank_fee" property="bank_fee" jdbcType="DECIMAL" />
+    <result column="org_check_file_path" property="org_check_file_path" jdbcType="VARCHAR" />
+    <result column="release_check_file_path" property="release_check_file_path" jdbcType="VARCHAR" />
+    <result column="release_status" property="release_status" jdbcType="VARCHAR" />
+    <result column="check_fail_msg" property="check_fail_msg" jdbcType="VARCHAR" />
+    <result column="bank_err_msg" property="bank_err_msg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, version, create_time, editor, creater, edit_time, status, remark, batch_no, bill_date, 
+    bill_type, handle_status, bank_type, mistake_count, unhandle_mistake_count, trade_count, 
+    bank_trade_count, trade_amount, bank_trade_amount, refund_amount, bank_refund_amount, 
+    bank_fee, org_check_file_path, release_check_file_path, release_status, check_fail_msg, 
+    bank_err_msg
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.xxpay.dal.dao.reconciliation.entity.RpAccountCheckBatchExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rp_account_check_batch
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null" >
+      <if test="offset != null" >
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null" >
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from rp_account_check_batch
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from rp_account_check_batch
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.xxpay.dal.dao.reconciliation.entity.RpAccountCheckBatchExample" >
+    delete from rp_account_check_batch
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.xxpay.dal.dao.reconciliation.entity.RpAccountCheckBatch" >
+    insert into rp_account_check_batch (id, version, create_time, 
+      editor, creater, edit_time, 
+      status, remark, batch_no, 
+      bill_date, bill_type, handle_status, 
+      bank_type, mistake_count, unhandle_mistake_count, 
+      trade_count, bank_trade_count, trade_amount, 
+      bank_trade_amount, refund_amount, bank_refund_amount, 
+      bank_fee, org_check_file_path, release_check_file_path, 
+      release_status, check_fail_msg, bank_err_msg
+      )
+    values (#{id,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, #{create_time,jdbcType=TIMESTAMP}, 
+      #{editor,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{edit_time,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{batch_no,jdbcType=VARCHAR}, 
+      #{bill_date,jdbcType=DATE}, #{bill_type,jdbcType=VARCHAR}, #{handle_status,jdbcType=VARCHAR}, 
+      #{bank_type,jdbcType=VARCHAR}, #{mistake_count,jdbcType=INTEGER}, #{unhandle_mistake_count,jdbcType=INTEGER}, 
+      #{trade_count,jdbcType=INTEGER}, #{bank_trade_count,jdbcType=INTEGER}, #{trade_amount,jdbcType=DECIMAL}, 
+      #{bank_trade_amount,jdbcType=DECIMAL}, #{refund_amount,jdbcType=DECIMAL}, #{bank_refund_amount,jdbcType=DECIMAL}, 
+      #{bank_fee,jdbcType=DECIMAL}, #{org_check_file_path,jdbcType=VARCHAR}, #{release_check_file_path,jdbcType=VARCHAR}, 
+      #{release_status,jdbcType=VARCHAR}, #{check_fail_msg,jdbcType=VARCHAR}, #{bank_err_msg,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.xxpay.dal.dao.reconciliation.entity.RpAccountCheckBatch" >
+    insert into rp_account_check_batch
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="create_time != null" >
+        create_time,
+      </if>
+      <if test="editor != null" >
+        editor,
+      </if>
+      <if test="creater != null" >
+        creater,
+      </if>
+      <if test="edit_time != null" >
+        edit_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="batch_no != null" >
+        batch_no,
+      </if>
+      <if test="bill_date != null" >
+        bill_date,
+      </if>
+      <if test="bill_type != null" >
+        bill_type,
+      </if>
+      <if test="handle_status != null" >
+        handle_status,
+      </if>
+      <if test="bank_type != null" >
+        bank_type,
+      </if>
+      <if test="mistake_count != null" >
+        mistake_count,
+      </if>
+      <if test="unhandle_mistake_count != null" >
+        unhandle_mistake_count,
+      </if>
+      <if test="trade_count != null" >
+        trade_count,
+      </if>
+      <if test="bank_trade_count != null" >
+        bank_trade_count,
+      </if>
+      <if test="trade_amount != null" >
+        trade_amount,
+      </if>
+      <if test="bank_trade_amount != null" >
+        bank_trade_amount,
+      </if>
+      <if test="refund_amount != null" >
+        refund_amount,
+      </if>
+      <if test="bank_refund_amount != null" >
+        bank_refund_amount,
+      </if>
+      <if test="bank_fee != null" >
+        bank_fee,
+      </if>
+      <if test="org_check_file_path != null" >
+        org_check_file_path,
+      </if>
+      <if test="release_check_file_path != null" >
+        release_check_file_path,
+      </if>
+      <if test="release_status != null" >
+        release_status,
+      </if>
+      <if test="check_fail_msg != null" >
+        check_fail_msg,
+      </if>
+      <if test="bank_err_msg != null" >
+        bank_err_msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null" >
+        #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editor != null" >
+        #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="edit_time != null" >
+        #{edit_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="batch_no != null" >
+        #{batch_no,jdbcType=VARCHAR},
+      </if>
+      <if test="bill_date != null" >
+        #{bill_date,jdbcType=DATE},
+      </if>
+      <if test="bill_type != null" >
+        #{bill_type,jdbcType=VARCHAR},
+      </if>
+      <if test="handle_status != null" >
+        #{handle_status,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_type != null" >
+        #{bank_type,jdbcType=VARCHAR},
+      </if>
+      <if test="mistake_count != null" >
+        #{mistake_count,jdbcType=INTEGER},
+      </if>
+      <if test="unhandle_mistake_count != null" >
+        #{unhandle_mistake_count,jdbcType=INTEGER},
+      </if>
+      <if test="trade_count != null" >
+        #{trade_count,jdbcType=INTEGER},
+      </if>
+      <if test="bank_trade_count != null" >
+        #{bank_trade_count,jdbcType=INTEGER},
+      </if>
+      <if test="trade_amount != null" >
+        #{trade_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="bank_trade_amount != null" >
+        #{bank_trade_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="refund_amount != null" >
+        #{refund_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="bank_refund_amount != null" >
+        #{bank_refund_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="bank_fee != null" >
+        #{bank_fee,jdbcType=DECIMAL},
+      </if>
+      <if test="org_check_file_path != null" >
+        #{org_check_file_path,jdbcType=VARCHAR},
+      </if>
+      <if test="release_check_file_path != null" >
+        #{release_check_file_path,jdbcType=VARCHAR},
+      </if>
+      <if test="release_status != null" >
+        #{release_status,jdbcType=VARCHAR},
+      </if>
+      <if test="check_fail_msg != null" >
+        #{check_fail_msg,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_err_msg != null" >
+        #{bank_err_msg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.xxpay.dal.dao.reconciliation.entity.RpAccountCheckBatchExample" resultType="java.lang.Integer" >
+    select count(*) from rp_account_check_batch
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update rp_account_check_batch
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.create_time != null" >
+        create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.editor != null" >
+        editor = #{record.editor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creater != null" >
+        creater = #{record.creater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.edit_time != null" >
+        edit_time = #{record.edit_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.batch_no != null" >
+        batch_no = #{record.batch_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bill_date != null" >
+        bill_date = #{record.bill_date,jdbcType=DATE},
+      </if>
+      <if test="record.bill_type != null" >
+        bill_type = #{record.bill_type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.handle_status != null" >
+        handle_status = #{record.handle_status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bank_type != null" >
+        bank_type = #{record.bank_type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mistake_count != null" >
+        mistake_count = #{record.mistake_count,jdbcType=INTEGER},
+      </if>
+      <if test="record.unhandle_mistake_count != null" >
+        unhandle_mistake_count = #{record.unhandle_mistake_count,jdbcType=INTEGER},
+      </if>
+      <if test="record.trade_count != null" >
+        trade_count = #{record.trade_count,jdbcType=INTEGER},
+      </if>
+      <if test="record.bank_trade_count != null" >
+        bank_trade_count = #{record.bank_trade_count,jdbcType=INTEGER},
+      </if>
+      <if test="record.trade_amount != null" >
+        trade_amount = #{record.trade_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bank_trade_amount != null" >
+        bank_trade_amount = #{record.bank_trade_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.refund_amount != null" >
+        refund_amount = #{record.refund_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bank_refund_amount != null" >
+        bank_refund_amount = #{record.bank_refund_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bank_fee != null" >
+        bank_fee = #{record.bank_fee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.org_check_file_path != null" >
+        org_check_file_path = #{record.org_check_file_path,jdbcType=VARCHAR},
+      </if>
+      <if test="record.release_check_file_path != null" >
+        release_check_file_path = #{record.release_check_file_path,jdbcType=VARCHAR},
+      </if>
+      <if test="record.release_status != null" >
+        release_status = #{record.release_status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.check_fail_msg != null" >
+        check_fail_msg = #{record.check_fail_msg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bank_err_msg != null" >
+        bank_err_msg = #{record.bank_err_msg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update rp_account_check_batch
+    set id = #{record.id,jdbcType=VARCHAR},
+      version = #{record.version,jdbcType=INTEGER},
+      create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      editor = #{record.editor,jdbcType=VARCHAR},
+      creater = #{record.creater,jdbcType=VARCHAR},
+      edit_time = #{record.edit_time,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      batch_no = #{record.batch_no,jdbcType=VARCHAR},
+      bill_date = #{record.bill_date,jdbcType=DATE},
+      bill_type = #{record.bill_type,jdbcType=VARCHAR},
+      handle_status = #{record.handle_status,jdbcType=VARCHAR},
+      bank_type = #{record.bank_type,jdbcType=VARCHAR},
+      mistake_count = #{record.mistake_count,jdbcType=INTEGER},
+      unhandle_mistake_count = #{record.unhandle_mistake_count,jdbcType=INTEGER},
+      trade_count = #{record.trade_count,jdbcType=INTEGER},
+      bank_trade_count = #{record.bank_trade_count,jdbcType=INTEGER},
+      trade_amount = #{record.trade_amount,jdbcType=DECIMAL},
+      bank_trade_amount = #{record.bank_trade_amount,jdbcType=DECIMAL},
+      refund_amount = #{record.refund_amount,jdbcType=DECIMAL},
+      bank_refund_amount = #{record.bank_refund_amount,jdbcType=DECIMAL},
+      bank_fee = #{record.bank_fee,jdbcType=DECIMAL},
+      org_check_file_path = #{record.org_check_file_path,jdbcType=VARCHAR},
+      release_check_file_path = #{record.release_check_file_path,jdbcType=VARCHAR},
+      release_status = #{record.release_status,jdbcType=VARCHAR},
+      check_fail_msg = #{record.check_fail_msg,jdbcType=VARCHAR},
+      bank_err_msg = #{record.bank_err_msg,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.xxpay.dal.dao.reconciliation.entity.RpAccountCheckBatch" >
+    update rp_account_check_batch
+    <set >
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null" >
+        create_time = #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editor != null" >
+        editor = #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="edit_time != null" >
+        edit_time = #{edit_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="batch_no != null" >
+        batch_no = #{batch_no,jdbcType=VARCHAR},
+      </if>
+      <if test="bill_date != null" >
+        bill_date = #{bill_date,jdbcType=DATE},
+      </if>
+      <if test="bill_type != null" >
+        bill_type = #{bill_type,jdbcType=VARCHAR},
+      </if>
+      <if test="handle_status != null" >
+        handle_status = #{handle_status,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_type != null" >
+        bank_type = #{bank_type,jdbcType=VARCHAR},
+      </if>
+      <if test="mistake_count != null" >
+        mistake_count = #{mistake_count,jdbcType=INTEGER},
+      </if>
+      <if test="unhandle_mistake_count != null" >
+        unhandle_mistake_count = #{unhandle_mistake_count,jdbcType=INTEGER},
+      </if>
+      <if test="trade_count != null" >
+        trade_count = #{trade_count,jdbcType=INTEGER},
+      </if>
+      <if test="bank_trade_count != null" >
+        bank_trade_count = #{bank_trade_count,jdbcType=INTEGER},
+      </if>
+      <if test="trade_amount != null" >
+        trade_amount = #{trade_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="bank_trade_amount != null" >
+        bank_trade_amount = #{bank_trade_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="refund_amount != null" >
+        refund_amount = #{refund_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="bank_refund_amount != null" >
+        bank_refund_amount = #{bank_refund_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="bank_fee != null" >
+        bank_fee = #{bank_fee,jdbcType=DECIMAL},
+      </if>
+      <if test="org_check_file_path != null" >
+        org_check_file_path = #{org_check_file_path,jdbcType=VARCHAR},
+      </if>
+      <if test="release_check_file_path != null" >
+        release_check_file_path = #{release_check_file_path,jdbcType=VARCHAR},
+      </if>
+      <if test="release_status != null" >
+        release_status = #{release_status,jdbcType=VARCHAR},
+      </if>
+      <if test="check_fail_msg != null" >
+        check_fail_msg = #{check_fail_msg,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_err_msg != null" >
+        bank_err_msg = #{bank_err_msg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.xxpay.dal.dao.reconciliation.entity.RpAccountCheckBatch" >
+    update rp_account_check_batch
+    set version = #{version,jdbcType=INTEGER},
+      create_time = #{create_time,jdbcType=TIMESTAMP},
+      editor = #{editor,jdbcType=VARCHAR},
+      creater = #{creater,jdbcType=VARCHAR},
+      edit_time = #{edit_time,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      batch_no = #{batch_no,jdbcType=VARCHAR},
+      bill_date = #{bill_date,jdbcType=DATE},
+      bill_type = #{bill_type,jdbcType=VARCHAR},
+      handle_status = #{handle_status,jdbcType=VARCHAR},
+      bank_type = #{bank_type,jdbcType=VARCHAR},
+      mistake_count = #{mistake_count,jdbcType=INTEGER},
+      unhandle_mistake_count = #{unhandle_mistake_count,jdbcType=INTEGER},
+      trade_count = #{trade_count,jdbcType=INTEGER},
+      bank_trade_count = #{bank_trade_count,jdbcType=INTEGER},
+      trade_amount = #{trade_amount,jdbcType=DECIMAL},
+      bank_trade_amount = #{bank_trade_amount,jdbcType=DECIMAL},
+      refund_amount = #{refund_amount,jdbcType=DECIMAL},
+      bank_refund_amount = #{bank_refund_amount,jdbcType=DECIMAL},
+      bank_fee = #{bank_fee,jdbcType=DECIMAL},
+      org_check_file_path = #{org_check_file_path,jdbcType=VARCHAR},
+      release_check_file_path = #{release_check_file_path,jdbcType=VARCHAR},
+      release_status = #{release_status,jdbcType=VARCHAR},
+      check_fail_msg = #{check_fail_msg,jdbcType=VARCHAR},
+      bank_err_msg = #{bank_err_msg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

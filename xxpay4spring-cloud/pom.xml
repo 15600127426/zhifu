@@ -15,7 +15,11 @@
         <module>xxpay-config</module>
         <module>xxpay-service</module>
         <module>xxpay-web</module>
+        <module>xxpay-notify</module>
+        <module>xxpay-order-polling</module>
+        <module>xxpay-reconciliation</module>
         <module>xxpay-gateway</module>
+        <module>xxpay-settlement</module>
     </modules>
 
     <parent>

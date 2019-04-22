@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.xxpay.dal.dao.mapper.RpSettRecordMapper" >
+  <resultMap id="BaseResultMap" type="org.xxpay.dal.dao.account.entity.RpSettRecord" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+    <result column="edit_time" property="edit_time" jdbcType="TIMESTAMP" />
+    <result column="sett_mode" property="sett_mode" jdbcType="VARCHAR" />
+    <result column="account_no" property="account_no" jdbcType="VARCHAR" />
+    <result column="user_no" property="user_no" jdbcType="VARCHAR" />
+    <result column="user_name" property="user_name" jdbcType="VARCHAR" />
+    <result column="user_type" property="user_type" jdbcType="VARCHAR" />
+    <result column="sett_date" property="sett_date" jdbcType="DATE" />
+    <result column="bank_code" property="bank_code" jdbcType="VARCHAR" />
+    <result column="bank_name" property="bank_name" jdbcType="VARCHAR" />
+    <result column="bank_account_name" property="bank_account_name" jdbcType="VARCHAR" />
+    <result column="bank_account_no" property="bank_account_no" jdbcType="VARCHAR" />
+    <result column="bank_account_type" property="bank_account_type" jdbcType="VARCHAR" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="areas" property="areas" jdbcType="VARCHAR" />
+    <result column="bank_account_address" property="bank_account_address" jdbcType="VARCHAR" />
+    <result column="mobile_no" property="mobile_no" jdbcType="VARCHAR" />
+    <result column="sett_amount" property="sett_amount" jdbcType="DECIMAL" />
+    <result column="sett_fee" property="sett_fee" jdbcType="DECIMAL" />
+    <result column="remit_amount" property="remit_amount" jdbcType="DECIMAL" />
+    <result column="sett_status" property="sett_status" jdbcType="VARCHAR" />
+    <result column="remit_confirm_time" property="remit_confirm_time" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="remit_remark" property="remit_remark" jdbcType="VARCHAR" />
+    <result column="operator_loginname" property="operator_loginname" jdbcType="VARCHAR" />
+    <result column="operator_realname" property="operator_realname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, version, create_time, edit_time, sett_mode, account_no, user_no, user_name, user_type, 
+    sett_date, bank_code, bank_name, bank_account_name, bank_account_no, bank_account_type, 
+    country, province, city, areas, bank_account_address, mobile_no, sett_amount, sett_fee, 
+    remit_amount, sett_status, remit_confirm_time, remark, remit_remark, operator_loginname, 
+    operator_realname
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.xxpay.dal.dao.account.entity.RpSettRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rp_sett_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null" >
+      <if test="offset != null" >
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null" >
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from rp_sett_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from rp_sett_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.xxpay.dal.dao.account.entity.RpSettRecordExample" >
+    delete from rp_sett_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.xxpay.dal.dao.account.entity.RpSettRecord" >
+    insert into rp_sett_record (id, version, create_time, 
+      edit_time, sett_mode, account_no, 
+      user_no, user_name, user_type, 
+      sett_date, bank_code, bank_name, 
+      bank_account_name, bank_account_no, bank_account_type, 
+      country, province, city, 
+      areas, bank_account_address, mobile_no, 
+      sett_amount, sett_fee, remit_amount, 
+      sett_status, remit_confirm_time, remark, 
+      remit_remark, operator_loginname, operator_realname
+      )
+    values (#{id,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, #{create_time,jdbcType=TIMESTAMP}, 
+      #{edit_time,jdbcType=TIMESTAMP}, #{sett_mode,jdbcType=VARCHAR}, #{account_no,jdbcType=VARCHAR}, 
+      #{user_no,jdbcType=VARCHAR}, #{user_name,jdbcType=VARCHAR}, #{user_type,jdbcType=VARCHAR}, 
+      #{sett_date,jdbcType=DATE}, #{bank_code,jdbcType=VARCHAR}, #{bank_name,jdbcType=VARCHAR}, 
+      #{bank_account_name,jdbcType=VARCHAR}, #{bank_account_no,jdbcType=VARCHAR}, #{bank_account_type,jdbcType=VARCHAR}, 
+      #{country,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{areas,jdbcType=VARCHAR}, #{bank_account_address,jdbcType=VARCHAR}, #{mobile_no,jdbcType=VARCHAR}, 
+      #{sett_amount,jdbcType=DECIMAL}, #{sett_fee,jdbcType=DECIMAL}, #{remit_amount,jdbcType=DECIMAL}, 
+      #{sett_status,jdbcType=VARCHAR}, #{remit_confirm_time,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
+      #{remit_remark,jdbcType=VARCHAR}, #{operator_loginname,jdbcType=VARCHAR}, #{operator_realname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.xxpay.dal.dao.account.entity.RpSettRecord" >
+    insert into rp_sett_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="create_time != null" >
+        create_time,
+      </if>
+      <if test="edit_time != null" >
+        edit_time,
+      </if>
+      <if test="sett_mode != null" >
+        sett_mode,
+      </if>
+      <if test="account_no != null" >
+        account_no,
+      </if>
+      <if test="user_no != null" >
+        user_no,
+      </if>
+      <if test="user_name != null" >
+        user_name,
+      </if>
+      <if test="user_type != null" >
+        user_type,
+      </if>
+      <if test="sett_date != null" >
+        sett_date,
+      </if>
+      <if test="bank_code != null" >
+        bank_code,
+      </if>
+      <if test="bank_name != null" >
+        bank_name,
+      </if>
+      <if test="bank_account_name != null" >
+        bank_account_name,
+      </if>
+      <if test="bank_account_no != null" >
+        bank_account_no,
+      </if>
+      <if test="bank_account_type != null" >
+        bank_account_type,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="areas != null" >
+        areas,
+      </if>
+      <if test="bank_account_address != null" >
+        bank_account_address,
+      </if>
+      <if test="mobile_no != null" >
+        mobile_no,
+      </if>
+      <if test="sett_amount != null" >
+        sett_amount,
+      </if>
+      <if test="sett_fee != null" >
+        sett_fee,
+      </if>
+      <if test="remit_amount != null" >
+        remit_amount,
+      </if>
+      <if test="sett_status != null" >
+        sett_status,
+      </if>
+      <if test="remit_confirm_time != null" >
+        remit_confirm_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="remit_remark != null" >
+        remit_remark,
+      </if>
+      <if test="operator_loginname != null" >
+        operator_loginname,
+      </if>
+      <if test="operator_realname != null" >
+        operator_realname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null" >
+        #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="edit_time != null" >
+        #{edit_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sett_mode != null" >
+        #{sett_mode,jdbcType=VARCHAR},
+      </if>
+      <if test="account_no != null" >
+        #{account_no,jdbcType=VARCHAR},
+      </if>
+      <if test="user_no != null" >
+        #{user_no,jdbcType=VARCHAR},
+      </if>
+      <if test="user_name != null" >
+        #{user_name,jdbcType=VARCHAR},
+      </if>
+      <if test="user_type != null" >
+        #{user_type,jdbcType=VARCHAR},
+      </if>
+      <if test="sett_date != null" >
+        #{sett_date,jdbcType=DATE},
+      </if>
+      <if test="bank_code != null" >
+        #{bank_code,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_name != null" >
+        #{bank_name,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_account_name != null" >
+        #{bank_account_name,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_account_no != null" >
+        #{bank_account_no,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_account_type != null" >
+        #{bank_account_type,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="areas != null" >
+        #{areas,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_account_address != null" >
+        #{bank_account_address,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile_no != null" >
+        #{mobile_no,jdbcType=VARCHAR},
+      </if>
+      <if test="sett_amount != null" >
+        #{sett_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="sett_fee != null" >
+        #{sett_fee,jdbcType=DECIMAL},
+      </if>
+      <if test="remit_amount != null" >
+        #{remit_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="sett_status != null" >
+        #{sett_status,jdbcType=VARCHAR},
+      </if>
+      <if test="remit_confirm_time != null" >
+        #{remit_confirm_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="remit_remark != null" >
+        #{remit_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="operator_loginname != null" >
+        #{operator_loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="operator_realname != null" >
+        #{operator_realname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.xxpay.dal.dao.account.entity.RpSettRecordExample" resultType="java.lang.Integer" >
+    select count(*) from rp_sett_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update rp_sett_record
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.create_time != null" >
+        create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.edit_time != null" >
+        edit_time = #{record.edit_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sett_mode != null" >
+        sett_mode = #{record.sett_mode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.account_no != null" >
+        account_no = #{record.account_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.user_no != null" >
+        user_no = #{record.user_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.user_name != null" >
+        user_name = #{record.user_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.user_type != null" >
+        user_type = #{record.user_type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sett_date != null" >
+        sett_date = #{record.sett_date,jdbcType=DATE},
+      </if>
+      <if test="record.bank_code != null" >
+        bank_code = #{record.bank_code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bank_name != null" >
+        bank_name = #{record.bank_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bank_account_name != null" >
+        bank_account_name = #{record.bank_account_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bank_account_no != null" >
+        bank_account_no = #{record.bank_account_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bank_account_type != null" >
+        bank_account_type = #{record.bank_account_type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.country != null" >
+        country = #{record.country,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null" >
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areas != null" >
+        areas = #{record.areas,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bank_account_address != null" >
+        bank_account_address = #{record.bank_account_address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile_no != null" >
+        mobile_no = #{record.mobile_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sett_amount != null" >
+        sett_amount = #{record.sett_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sett_fee != null" >
+        sett_fee = #{record.sett_fee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.remit_amount != null" >
+        remit_amount = #{record.remit_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sett_status != null" >
+        sett_status = #{record.sett_status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remit_confirm_time != null" >
+        remit_confirm_time = #{record.remit_confirm_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remit_remark != null" >
+        remit_remark = #{record.remit_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operator_loginname != null" >
+        operator_loginname = #{record.operator_loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operator_realname != null" >
+        operator_realname = #{record.operator_realname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update rp_sett_record
+    set id = #{record.id,jdbcType=VARCHAR},
+      version = #{record.version,jdbcType=INTEGER},
+      create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      edit_time = #{record.edit_time,jdbcType=TIMESTAMP},
+      sett_mode = #{record.sett_mode,jdbcType=VARCHAR},
+      account_no = #{record.account_no,jdbcType=VARCHAR},
+      user_no = #{record.user_no,jdbcType=VARCHAR},
+      user_name = #{record.user_name,jdbcType=VARCHAR},
+      user_type = #{record.user_type,jdbcType=VARCHAR},
+      sett_date = #{record.sett_date,jdbcType=DATE},
+      bank_code = #{record.bank_code,jdbcType=VARCHAR},
+      bank_name = #{record.bank_name,jdbcType=VARCHAR},
+      bank_account_name = #{record.bank_account_name,jdbcType=VARCHAR},
+      bank_account_no = #{record.bank_account_no,jdbcType=VARCHAR},
+      bank_account_type = #{record.bank_account_type,jdbcType=VARCHAR},
+      country = #{record.country,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      areas = #{record.areas,jdbcType=VARCHAR},
+      bank_account_address = #{record.bank_account_address,jdbcType=VARCHAR},
+      mobile_no = #{record.mobile_no,jdbcType=VARCHAR},
+      sett_amount = #{record.sett_amount,jdbcType=DECIMAL},
+      sett_fee = #{record.sett_fee,jdbcType=DECIMAL},
+      remit_amount = #{record.remit_amount,jdbcType=DECIMAL},
+      sett_status = #{record.sett_status,jdbcType=VARCHAR},
+      remit_confirm_time = #{record.remit_confirm_time,jdbcType=TIMESTAMP},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      remit_remark = #{record.remit_remark,jdbcType=VARCHAR},
+      operator_loginname = #{record.operator_loginname,jdbcType=VARCHAR},
+      operator_realname = #{record.operator_realname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.xxpay.dal.dao.account.entity.RpSettRecord" >
+    update rp_sett_record
+    <set >
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null" >
+        create_time = #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="edit_time != null" >
+        edit_time = #{edit_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sett_mode != null" >
+        sett_mode = #{sett_mode,jdbcType=VARCHAR},
+      </if>
+      <if test="account_no != null" >
+        account_no = #{account_no,jdbcType=VARCHAR},
+      </if>
+      <if test="user_no != null" >
+        user_no = #{user_no,jdbcType=VARCHAR},
+      </if>
+      <if test="user_name != null" >
+        user_name = #{user_name,jdbcType=VARCHAR},
+      </if>
+      <if test="user_type != null" >
+        user_type = #{user_type,jdbcType=VARCHAR},
+      </if>
+      <if test="sett_date != null" >
+        sett_date = #{sett_date,jdbcType=DATE},
+      </if>
+      <if test="bank_code != null" >
+        bank_code = #{bank_code,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_name != null" >
+        bank_name = #{bank_name,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_account_name != null" >
+        bank_account_name = #{bank_account_name,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_account_no != null" >
+        bank_account_no = #{bank_account_no,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_account_type != null" >
+        bank_account_type = #{bank_account_type,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="areas != null" >
+        areas = #{areas,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_account_address != null" >
+        bank_account_address = #{bank_account_address,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile_no != null" >
+        mobile_no = #{mobile_no,jdbcType=VARCHAR},
+      </if>
+      <if test="sett_amount != null" >
+        sett_amount = #{sett_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="sett_fee != null" >
+        sett_fee = #{sett_fee,jdbcType=DECIMAL},
+      </if>
+      <if test="remit_amount != null" >
+        remit_amount = #{remit_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="sett_status != null" >
+        sett_status = #{sett_status,jdbcType=VARCHAR},
+      </if>
+      <if test="remit_confirm_time != null" >
+        remit_confirm_time = #{remit_confirm_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="remit_remark != null" >
+        remit_remark = #{remit_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="operator_loginname != null" >
+        operator_loginname = #{operator_loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="operator_realname != null" >
+        operator_realname = #{operator_realname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.xxpay.dal.dao.account.entity.RpSettRecord" >
+    update rp_sett_record
+    set version = #{version,jdbcType=INTEGER},
+      create_time = #{create_time,jdbcType=TIMESTAMP},
+      edit_time = #{edit_time,jdbcType=TIMESTAMP},
+      sett_mode = #{sett_mode,jdbcType=VARCHAR},
+      account_no = #{account_no,jdbcType=VARCHAR},
+      user_no = #{user_no,jdbcType=VARCHAR},
+      user_name = #{user_name,jdbcType=VARCHAR},
+      user_type = #{user_type,jdbcType=VARCHAR},
+      sett_date = #{sett_date,jdbcType=DATE},
+      bank_code = #{bank_code,jdbcType=VARCHAR},
+      bank_name = #{bank_name,jdbcType=VARCHAR},
+      bank_account_name = #{bank_account_name,jdbcType=VARCHAR},
+      bank_account_no = #{bank_account_no,jdbcType=VARCHAR},
+      bank_account_type = #{bank_account_type,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      areas = #{areas,jdbcType=VARCHAR},
+      bank_account_address = #{bank_account_address,jdbcType=VARCHAR},
+      mobile_no = #{mobile_no,jdbcType=VARCHAR},
+      sett_amount = #{sett_amount,jdbcType=DECIMAL},
+      sett_fee = #{sett_fee,jdbcType=DECIMAL},
+      remit_amount = #{remit_amount,jdbcType=DECIMAL},
+      sett_status = #{sett_status,jdbcType=VARCHAR},
+      remit_confirm_time = #{remit_confirm_time,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      remit_remark = #{remit_remark,jdbcType=VARCHAR},
+      operator_loginname = #{operator_loginname,jdbcType=VARCHAR},
+      operator_realname = #{operator_realname,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

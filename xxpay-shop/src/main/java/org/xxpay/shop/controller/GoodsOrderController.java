@@ -37,19 +37,19 @@ public class GoodsOrderController {
     @Autowired
     private GoodsOrderService goodsOrderService;
 
-    static final String mchId = "20001223";
+    static final String mchId = "10000001";
     // 加签key
-    static final String reqKey = "M86l522AV6q613Ii4W6u8K48uW8vM1N6bFgyv769220MdYe9u37N4y7rI5mQ";
+    static final String reqKey = "1233454";
     // 验签key
-    static final String resKey = "Hpcl522AV6q613KIi46u6g6XuW8vM1N8bFgyv769770MdYe9u37M4y7rIpl8";
+    static final String resKey = "adwaerfeafrawdaf";
     //static final String baseUrl = "http://api.xxpay.org/api";
-    static final String baseUrl = "http://127.0.0.1:3020/api";
+    static final String baseUrl = "http://27.159.82.13:3020/api";
     //static final String notifyUrl = "http://shop.xxpay.org/goods/payNotify";
-    static final String notifyUrl = "http://127.0.0.1:8081/goods/payNotify";
+    static final String notifyUrl = "http://27.159.82.13:8022/goods/payNotify";
     private AtomicLong seq = new AtomicLong(0L);
     private final static String QR_PAY_URL = "http://shop.xxpay.org/goods/qrPay.html";
-    static final String AppID = "wx077cb62e341f8a5c";
-    static final String AppSecret = "e663ea068f3e4f952f143de1432a35c2";
+    static final String AppID = "wx91078c222539ed6f";
+    static final String AppSecret = "8ead6f1e0b6b69726e2bc404642533ee";
     private final static String GetOpenIdURL = "http://shop.xxpay.org/goods/getOpenId";
     private final static String GetOpenIdURL2 = "http://shop.xxpay.org/goods/getOpenId2";
 
@@ -64,7 +64,7 @@ public class GoodsOrderController {
         GoodsOrder goodsOrder = new GoodsOrder();
         goodsOrder.setGoodsOrderId(goodsOrderId);
         goodsOrder.setGoodsId(goodsId);
-        goodsOrder.setGoodsName("XXPAY捐助商品G_0001");
+        goodsOrder.setGoodsName("123");
         goodsOrder.setAmount(1l);
         goodsOrder.setUserId("xxpay_000001");
         goodsOrder.setStatus(Constant.GOODS_ORDER_STATUS_INIT);

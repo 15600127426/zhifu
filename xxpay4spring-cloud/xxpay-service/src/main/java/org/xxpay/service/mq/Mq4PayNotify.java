@@ -29,9 +29,6 @@ import java.util.Date;
 
 /**
  * @Description: 业务通知MQ实现
- * @author dingzhiwei jmdhappy@126.com
- * @date 2017-07-05
- * @version V1.0
  * @Copyright: www.xxpay.org
  */
 @Component

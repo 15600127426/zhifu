@@ -21,10 +21,6 @@ import java.util.Map;
 
 /**
  * @Description: 支付订单,包括:统一下单,订单查询,补单等接口
- * @author dingzhiwei jmdhappy@126.com
- * @date 2017-07-05
- * @version V1.0
- * @Copyright: www.xxpay.org
  */
 @RestController
 public class PayOrderController {

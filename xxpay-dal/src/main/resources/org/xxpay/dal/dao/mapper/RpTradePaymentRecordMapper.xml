@@ -1,0 +1,963 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.xxpay.dal.dao.mapper.RpTradePaymentRecordMapper" >
+  <resultMap id="BaseResultMap" type="org.xxpay.dal.dao.model.RpTradePaymentRecord" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="editor" property="editor" jdbcType="VARCHAR" />
+    <result column="creater" property="creater" jdbcType="VARCHAR" />
+    <result column="edit_time" property="edit_time" jdbcType="TIMESTAMP" />
+    <result column="product_name" property="product_name" jdbcType="VARCHAR" />
+    <result column="merchant_order_no" property="merchant_order_no" jdbcType="VARCHAR" />
+    <result column="trx_no" property="trx_no" jdbcType="VARCHAR" />
+    <result column="bank_order_no" property="bank_order_no" jdbcType="VARCHAR" />
+    <result column="bank_trx_no" property="bank_trx_no" jdbcType="VARCHAR" />
+    <result column="merchant_name" property="merchant_name" jdbcType="VARCHAR" />
+    <result column="merchant_no" property="merchant_no" jdbcType="VARCHAR" />
+    <result column="payer_user_no" property="payer_user_no" jdbcType="VARCHAR" />
+    <result column="payer_name" property="payer_name" jdbcType="VARCHAR" />
+    <result column="payer_pay_amount" property="payer_pay_amount" jdbcType="DECIMAL" />
+    <result column="payer_fee" property="payer_fee" jdbcType="DECIMAL" />
+    <result column="payer_account_type" property="payer_account_type" jdbcType="VARCHAR" />
+    <result column="receiver_user_no" property="receiver_user_no" jdbcType="VARCHAR" />
+    <result column="receiver_name" property="receiver_name" jdbcType="VARCHAR" />
+    <result column="receiver_pay_amount" property="receiver_pay_amount" jdbcType="DECIMAL" />
+    <result column="receiver_fee" property="receiver_fee" jdbcType="DECIMAL" />
+    <result column="receiver_account_type" property="receiver_account_type" jdbcType="VARCHAR" />
+    <result column="order_ip" property="order_ip" jdbcType="VARCHAR" />
+    <result column="order_referer_url" property="order_referer_url" jdbcType="VARCHAR" />
+    <result column="order_amount" property="order_amount" jdbcType="DECIMAL" />
+    <result column="plat_income" property="plat_income" jdbcType="DECIMAL" />
+    <result column="fee_rate" property="fee_rate" jdbcType="DECIMAL" />
+    <result column="plat_cost" property="plat_cost" jdbcType="DECIMAL" />
+    <result column="plat_profit" property="plat_profit" jdbcType="DECIMAL" />
+    <result column="return_url" property="return_url" jdbcType="VARCHAR" />
+    <result column="notify_url" property="notify_url" jdbcType="VARCHAR" />
+    <result column="pay_way_code" property="pay_way_code" jdbcType="VARCHAR" />
+    <result column="pay_way_name" property="pay_way_name" jdbcType="VARCHAR" />
+    <result column="pay_success_time" property="pay_success_time" jdbcType="TIMESTAMP" />
+    <result column="complete_time" property="complete_time" jdbcType="TIMESTAMP" />
+    <result column="is_refund" property="is_refund" jdbcType="VARCHAR" />
+    <result column="refund_times" property="refund_times" jdbcType="INTEGER" />
+    <result column="success_refund_amount" property="success_refund_amount" jdbcType="DECIMAL" />
+    <result column="trx_type" property="trx_type" jdbcType="VARCHAR" />
+    <result column="order_from" property="order_from" jdbcType="VARCHAR" />
+    <result column="pay_type_code" property="pay_type_code" jdbcType="VARCHAR" />
+    <result column="pay_type_name" property="pay_type_name" jdbcType="VARCHAR" />
+    <result column="fund_into_type" property="fund_into_type" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="field1" property="field1" jdbcType="VARCHAR" />
+    <result column="field2" property="field2" jdbcType="VARCHAR" />
+    <result column="field3" property="field3" jdbcType="VARCHAR" />
+    <result column="field4" property="field4" jdbcType="VARCHAR" />
+    <result column="field5" property="field5" jdbcType="VARCHAR" />
+    <result column="bank_return_msg" property="bank_return_msg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, version, create_time, status, editor, creater, edit_time, product_name, merchant_order_no, 
+    trx_no, bank_order_no, bank_trx_no, merchant_name, merchant_no, payer_user_no, payer_name, 
+    payer_pay_amount, payer_fee, payer_account_type, receiver_user_no, receiver_name, 
+    receiver_pay_amount, receiver_fee, receiver_account_type, order_ip, order_referer_url, 
+    order_amount, plat_income, fee_rate, plat_cost, plat_profit, return_url, notify_url, 
+    pay_way_code, pay_way_name, pay_success_time, complete_time, is_refund, refund_times, 
+    success_refund_amount, trx_type, order_from, pay_type_code, pay_type_name, fund_into_type, 
+    remark, field1, field2, field3, field4, field5, bank_return_msg
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.xxpay.dal.dao.model.RpTradePaymentRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rp_trade_payment_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null" >
+      <if test="offset != null" >
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null" >
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from rp_trade_payment_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from rp_trade_payment_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.xxpay.dal.dao.model.RpTradePaymentRecordExample" >
+    delete from rp_trade_payment_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.xxpay.dal.dao.model.RpTradePaymentRecord" >
+    insert into rp_trade_payment_record (id, version, create_time, 
+      status, editor, creater, 
+      edit_time, product_name, merchant_order_no, 
+      trx_no, bank_order_no, bank_trx_no, 
+      merchant_name, merchant_no, payer_user_no, 
+      payer_name, payer_pay_amount, payer_fee, 
+      payer_account_type, receiver_user_no, receiver_name, 
+      receiver_pay_amount, receiver_fee, receiver_account_type, 
+      order_ip, order_referer_url, order_amount, 
+      plat_income, fee_rate, plat_cost, 
+      plat_profit, return_url, notify_url, 
+      pay_way_code, pay_way_name, pay_success_time, 
+      complete_time, is_refund, refund_times, 
+      success_refund_amount, trx_type, order_from, 
+      pay_type_code, pay_type_name, fund_into_type, 
+      remark, field1, field2, 
+      field3, field4, field5, 
+      bank_return_msg)
+    values (#{id,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, #{create_time,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=VARCHAR}, #{editor,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, 
+      #{edit_time,jdbcType=TIMESTAMP}, #{product_name,jdbcType=VARCHAR}, #{merchant_order_no,jdbcType=VARCHAR}, 
+      #{trx_no,jdbcType=VARCHAR}, #{bank_order_no,jdbcType=VARCHAR}, #{bank_trx_no,jdbcType=VARCHAR}, 
+      #{merchant_name,jdbcType=VARCHAR}, #{merchant_no,jdbcType=VARCHAR}, #{payer_user_no,jdbcType=VARCHAR}, 
+      #{payer_name,jdbcType=VARCHAR}, #{payer_pay_amount,jdbcType=DECIMAL}, #{payer_fee,jdbcType=DECIMAL}, 
+      #{payer_account_type,jdbcType=VARCHAR}, #{receiver_user_no,jdbcType=VARCHAR}, #{receiver_name,jdbcType=VARCHAR}, 
+      #{receiver_pay_amount,jdbcType=DECIMAL}, #{receiver_fee,jdbcType=DECIMAL}, #{receiver_account_type,jdbcType=VARCHAR}, 
+      #{order_ip,jdbcType=VARCHAR}, #{order_referer_url,jdbcType=VARCHAR}, #{order_amount,jdbcType=DECIMAL}, 
+      #{plat_income,jdbcType=DECIMAL}, #{fee_rate,jdbcType=DECIMAL}, #{plat_cost,jdbcType=DECIMAL}, 
+      #{plat_profit,jdbcType=DECIMAL}, #{return_url,jdbcType=VARCHAR}, #{notify_url,jdbcType=VARCHAR}, 
+      #{pay_way_code,jdbcType=VARCHAR}, #{pay_way_name,jdbcType=VARCHAR}, #{pay_success_time,jdbcType=TIMESTAMP}, 
+      #{complete_time,jdbcType=TIMESTAMP}, #{is_refund,jdbcType=VARCHAR}, #{refund_times,jdbcType=INTEGER}, 
+      #{success_refund_amount,jdbcType=DECIMAL}, #{trx_type,jdbcType=VARCHAR}, #{order_from,jdbcType=VARCHAR}, 
+      #{pay_type_code,jdbcType=VARCHAR}, #{pay_type_name,jdbcType=VARCHAR}, #{fund_into_type,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{field1,jdbcType=VARCHAR}, #{field2,jdbcType=VARCHAR}, 
+      #{field3,jdbcType=VARCHAR}, #{field4,jdbcType=VARCHAR}, #{field5,jdbcType=VARCHAR}, 
+      #{bank_return_msg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.xxpay.dal.dao.model.RpTradePaymentRecord" >
+    insert into rp_trade_payment_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="create_time != null" >
+        create_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="editor != null" >
+        editor,
+      </if>
+      <if test="creater != null" >
+        creater,
+      </if>
+      <if test="edit_time != null" >
+        edit_time,
+      </if>
+      <if test="product_name != null" >
+        product_name,
+      </if>
+      <if test="merchant_order_no != null" >
+        merchant_order_no,
+      </if>
+      <if test="trx_no != null" >
+        trx_no,
+      </if>
+      <if test="bank_order_no != null" >
+        bank_order_no,
+      </if>
+      <if test="bank_trx_no != null" >
+        bank_trx_no,
+      </if>
+      <if test="merchant_name != null" >
+        merchant_name,
+      </if>
+      <if test="merchant_no != null" >
+        merchant_no,
+      </if>
+      <if test="payer_user_no != null" >
+        payer_user_no,
+      </if>
+      <if test="payer_name != null" >
+        payer_name,
+      </if>
+      <if test="payer_pay_amount != null" >
+        payer_pay_amount,
+      </if>
+      <if test="payer_fee != null" >
+        payer_fee,
+      </if>
+      <if test="payer_account_type != null" >
+        payer_account_type,
+      </if>
+      <if test="receiver_user_no != null" >
+        receiver_user_no,
+      </if>
+      <if test="receiver_name != null" >
+        receiver_name,
+      </if>
+      <if test="receiver_pay_amount != null" >
+        receiver_pay_amount,
+      </if>
+      <if test="receiver_fee != null" >
+        receiver_fee,
+      </if>
+      <if test="receiver_account_type != null" >
+        receiver_account_type,
+      </if>
+      <if test="order_ip != null" >
+        order_ip,
+      </if>
+      <if test="order_referer_url != null" >
+        order_referer_url,
+      </if>
+      <if test="order_amount != null" >
+        order_amount,
+      </if>
+      <if test="plat_income != null" >
+        plat_income,
+      </if>
+      <if test="fee_rate != null" >
+        fee_rate,
+      </if>
+      <if test="plat_cost != null" >
+        plat_cost,
+      </if>
+      <if test="plat_profit != null" >
+        plat_profit,
+      </if>
+      <if test="return_url != null" >
+        return_url,
+      </if>
+      <if test="notify_url != null" >
+        notify_url,
+      </if>
+      <if test="pay_way_code != null" >
+        pay_way_code,
+      </if>
+      <if test="pay_way_name != null" >
+        pay_way_name,
+      </if>
+      <if test="pay_success_time != null" >
+        pay_success_time,
+      </if>
+      <if test="complete_time != null" >
+        complete_time,
+      </if>
+      <if test="is_refund != null" >
+        is_refund,
+      </if>
+      <if test="refund_times != null" >
+        refund_times,
+      </if>
+      <if test="success_refund_amount != null" >
+        success_refund_amount,
+      </if>
+      <if test="trx_type != null" >
+        trx_type,
+      </if>
+      <if test="order_from != null" >
+        order_from,
+      </if>
+      <if test="pay_type_code != null" >
+        pay_type_code,
+      </if>
+      <if test="pay_type_name != null" >
+        pay_type_name,
+      </if>
+      <if test="fund_into_type != null" >
+        fund_into_type,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="field1 != null" >
+        field1,
+      </if>
+      <if test="field2 != null" >
+        field2,
+      </if>
+      <if test="field3 != null" >
+        field3,
+      </if>
+      <if test="field4 != null" >
+        field4,
+      </if>
+      <if test="field5 != null" >
+        field5,
+      </if>
+      <if test="bank_return_msg != null" >
+        bank_return_msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null" >
+        #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="editor != null" >
+        #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="edit_time != null" >
+        #{edit_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="product_name != null" >
+        #{product_name,jdbcType=VARCHAR},
+      </if>
+      <if test="merchant_order_no != null" >
+        #{merchant_order_no,jdbcType=VARCHAR},
+      </if>
+      <if test="trx_no != null" >
+        #{trx_no,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_order_no != null" >
+        #{bank_order_no,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_trx_no != null" >
+        #{bank_trx_no,jdbcType=VARCHAR},
+      </if>
+      <if test="merchant_name != null" >
+        #{merchant_name,jdbcType=VARCHAR},
+      </if>
+      <if test="merchant_no != null" >
+        #{merchant_no,jdbcType=VARCHAR},
+      </if>
+      <if test="payer_user_no != null" >
+        #{payer_user_no,jdbcType=VARCHAR},
+      </if>
+      <if test="payer_name != null" >
+        #{payer_name,jdbcType=VARCHAR},
+      </if>
+      <if test="payer_pay_amount != null" >
+        #{payer_pay_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="payer_fee != null" >
+        #{payer_fee,jdbcType=DECIMAL},
+      </if>
+      <if test="payer_account_type != null" >
+        #{payer_account_type,jdbcType=VARCHAR},
+      </if>
+      <if test="receiver_user_no != null" >
+        #{receiver_user_no,jdbcType=VARCHAR},
+      </if>
+      <if test="receiver_name != null" >
+        #{receiver_name,jdbcType=VARCHAR},
+      </if>
+      <if test="receiver_pay_amount != null" >
+        #{receiver_pay_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="receiver_fee != null" >
+        #{receiver_fee,jdbcType=DECIMAL},
+      </if>
+      <if test="receiver_account_type != null" >
+        #{receiver_account_type,jdbcType=VARCHAR},
+      </if>
+      <if test="order_ip != null" >
+        #{order_ip,jdbcType=VARCHAR},
+      </if>
+      <if test="order_referer_url != null" >
+        #{order_referer_url,jdbcType=VARCHAR},
+      </if>
+      <if test="order_amount != null" >
+        #{order_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="plat_income != null" >
+        #{plat_income,jdbcType=DECIMAL},
+      </if>
+      <if test="fee_rate != null" >
+        #{fee_rate,jdbcType=DECIMAL},
+      </if>
+      <if test="plat_cost != null" >
+        #{plat_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="plat_profit != null" >
+        #{plat_profit,jdbcType=DECIMAL},
+      </if>
+      <if test="return_url != null" >
+        #{return_url,jdbcType=VARCHAR},
+      </if>
+      <if test="notify_url != null" >
+        #{notify_url,jdbcType=VARCHAR},
+      </if>
+      <if test="pay_way_code != null" >
+        #{pay_way_code,jdbcType=VARCHAR},
+      </if>
+      <if test="pay_way_name != null" >
+        #{pay_way_name,jdbcType=VARCHAR},
+      </if>
+      <if test="pay_success_time != null" >
+        #{pay_success_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="complete_time != null" >
+        #{complete_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="is_refund != null" >
+        #{is_refund,jdbcType=VARCHAR},
+      </if>
+      <if test="refund_times != null" >
+        #{refund_times,jdbcType=INTEGER},
+      </if>
+      <if test="success_refund_amount != null" >
+        #{success_refund_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="trx_type != null" >
+        #{trx_type,jdbcType=VARCHAR},
+      </if>
+      <if test="order_from != null" >
+        #{order_from,jdbcType=VARCHAR},
+      </if>
+      <if test="pay_type_code != null" >
+        #{pay_type_code,jdbcType=VARCHAR},
+      </if>
+      <if test="pay_type_name != null" >
+        #{pay_type_name,jdbcType=VARCHAR},
+      </if>
+      <if test="fund_into_type != null" >
+        #{fund_into_type,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="field1 != null" >
+        #{field1,jdbcType=VARCHAR},
+      </if>
+      <if test="field2 != null" >
+        #{field2,jdbcType=VARCHAR},
+      </if>
+      <if test="field3 != null" >
+        #{field3,jdbcType=VARCHAR},
+      </if>
+      <if test="field4 != null" >
+        #{field4,jdbcType=VARCHAR},
+      </if>
+      <if test="field5 != null" >
+        #{field5,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_return_msg != null" >
+        #{bank_return_msg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.xxpay.dal.dao.model.RpTradePaymentRecordExample" resultType="java.lang.Integer" >
+    select count(*) from rp_trade_payment_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update rp_trade_payment_record
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.create_time != null" >
+        create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.editor != null" >
+        editor = #{record.editor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creater != null" >
+        creater = #{record.creater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.edit_time != null" >
+        edit_time = #{record.edit_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.product_name != null" >
+        product_name = #{record.product_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.merchant_order_no != null" >
+        merchant_order_no = #{record.merchant_order_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trx_no != null" >
+        trx_no = #{record.trx_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bank_order_no != null" >
+        bank_order_no = #{record.bank_order_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bank_trx_no != null" >
+        bank_trx_no = #{record.bank_trx_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.merchant_name != null" >
+        merchant_name = #{record.merchant_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.merchant_no != null" >
+        merchant_no = #{record.merchant_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payer_user_no != null" >
+        payer_user_no = #{record.payer_user_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payer_name != null" >
+        payer_name = #{record.payer_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payer_pay_amount != null" >
+        payer_pay_amount = #{record.payer_pay_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.payer_fee != null" >
+        payer_fee = #{record.payer_fee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.payer_account_type != null" >
+        payer_account_type = #{record.payer_account_type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiver_user_no != null" >
+        receiver_user_no = #{record.receiver_user_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiver_name != null" >
+        receiver_name = #{record.receiver_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiver_pay_amount != null" >
+        receiver_pay_amount = #{record.receiver_pay_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.receiver_fee != null" >
+        receiver_fee = #{record.receiver_fee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.receiver_account_type != null" >
+        receiver_account_type = #{record.receiver_account_type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.order_ip != null" >
+        order_ip = #{record.order_ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.order_referer_url != null" >
+        order_referer_url = #{record.order_referer_url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.order_amount != null" >
+        order_amount = #{record.order_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.plat_income != null" >
+        plat_income = #{record.plat_income,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fee_rate != null" >
+        fee_rate = #{record.fee_rate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.plat_cost != null" >
+        plat_cost = #{record.plat_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.plat_profit != null" >
+        plat_profit = #{record.plat_profit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.return_url != null" >
+        return_url = #{record.return_url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.notify_url != null" >
+        notify_url = #{record.notify_url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pay_way_code != null" >
+        pay_way_code = #{record.pay_way_code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pay_way_name != null" >
+        pay_way_name = #{record.pay_way_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pay_success_time != null" >
+        pay_success_time = #{record.pay_success_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.complete_time != null" >
+        complete_time = #{record.complete_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.is_refund != null" >
+        is_refund = #{record.is_refund,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refund_times != null" >
+        refund_times = #{record.refund_times,jdbcType=INTEGER},
+      </if>
+      <if test="record.success_refund_amount != null" >
+        success_refund_amount = #{record.success_refund_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.trx_type != null" >
+        trx_type = #{record.trx_type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.order_from != null" >
+        order_from = #{record.order_from,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pay_type_code != null" >
+        pay_type_code = #{record.pay_type_code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pay_type_name != null" >
+        pay_type_name = #{record.pay_type_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fund_into_type != null" >
+        fund_into_type = #{record.fund_into_type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.field1 != null" >
+        field1 = #{record.field1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.field2 != null" >
+        field2 = #{record.field2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.field3 != null" >
+        field3 = #{record.field3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.field4 != null" >
+        field4 = #{record.field4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.field5 != null" >
+        field5 = #{record.field5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bank_return_msg != null" >
+        bank_return_msg = #{record.bank_return_msg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update rp_trade_payment_record
+    set id = #{record.id,jdbcType=VARCHAR},
+      version = #{record.version,jdbcType=INTEGER},
+      create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=VARCHAR},
+      editor = #{record.editor,jdbcType=VARCHAR},
+      creater = #{record.creater,jdbcType=VARCHAR},
+      edit_time = #{record.edit_time,jdbcType=TIMESTAMP},
+      product_name = #{record.product_name,jdbcType=VARCHAR},
+      merchant_order_no = #{record.merchant_order_no,jdbcType=VARCHAR},
+      trx_no = #{record.trx_no,jdbcType=VARCHAR},
+      bank_order_no = #{record.bank_order_no,jdbcType=VARCHAR},
+      bank_trx_no = #{record.bank_trx_no,jdbcType=VARCHAR},
+      merchant_name = #{record.merchant_name,jdbcType=VARCHAR},
+      merchant_no = #{record.merchant_no,jdbcType=VARCHAR},
+      payer_user_no = #{record.payer_user_no,jdbcType=VARCHAR},
+      payer_name = #{record.payer_name,jdbcType=VARCHAR},
+      payer_pay_amount = #{record.payer_pay_amount,jdbcType=DECIMAL},
+      payer_fee = #{record.payer_fee,jdbcType=DECIMAL},
+      payer_account_type = #{record.payer_account_type,jdbcType=VARCHAR},
+      receiver_user_no = #{record.receiver_user_no,jdbcType=VARCHAR},
+      receiver_name = #{record.receiver_name,jdbcType=VARCHAR},
+      receiver_pay_amount = #{record.receiver_pay_amount,jdbcType=DECIMAL},
+      receiver_fee = #{record.receiver_fee,jdbcType=DECIMAL},
+      receiver_account_type = #{record.receiver_account_type,jdbcType=VARCHAR},
+      order_ip = #{record.order_ip,jdbcType=VARCHAR},
+      order_referer_url = #{record.order_referer_url,jdbcType=VARCHAR},
+      order_amount = #{record.order_amount,jdbcType=DECIMAL},
+      plat_income = #{record.plat_income,jdbcType=DECIMAL},
+      fee_rate = #{record.fee_rate,jdbcType=DECIMAL},
+      plat_cost = #{record.plat_cost,jdbcType=DECIMAL},
+      plat_profit = #{record.plat_profit,jdbcType=DECIMAL},
+      return_url = #{record.return_url,jdbcType=VARCHAR},
+      notify_url = #{record.notify_url,jdbcType=VARCHAR},
+      pay_way_code = #{record.pay_way_code,jdbcType=VARCHAR},
+      pay_way_name = #{record.pay_way_name,jdbcType=VARCHAR},
+      pay_success_time = #{record.pay_success_time,jdbcType=TIMESTAMP},
+      complete_time = #{record.complete_time,jdbcType=TIMESTAMP},
+      is_refund = #{record.is_refund,jdbcType=VARCHAR},
+      refund_times = #{record.refund_times,jdbcType=INTEGER},
+      success_refund_amount = #{record.success_refund_amount,jdbcType=DECIMAL},
+      trx_type = #{record.trx_type,jdbcType=VARCHAR},
+      order_from = #{record.order_from,jdbcType=VARCHAR},
+      pay_type_code = #{record.pay_type_code,jdbcType=VARCHAR},
+      pay_type_name = #{record.pay_type_name,jdbcType=VARCHAR},
+      fund_into_type = #{record.fund_into_type,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      field1 = #{record.field1,jdbcType=VARCHAR},
+      field2 = #{record.field2,jdbcType=VARCHAR},
+      field3 = #{record.field3,jdbcType=VARCHAR},
+      field4 = #{record.field4,jdbcType=VARCHAR},
+      field5 = #{record.field5,jdbcType=VARCHAR},
+      bank_return_msg = #{record.bank_return_msg,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.xxpay.dal.dao.model.RpTradePaymentRecord" >
+    update rp_trade_payment_record
+    <set >
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null" >
+        create_time = #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="editor != null" >
+        editor = #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="edit_time != null" >
+        edit_time = #{edit_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="product_name != null" >
+        product_name = #{product_name,jdbcType=VARCHAR},
+      </if>
+      <if test="merchant_order_no != null" >
+        merchant_order_no = #{merchant_order_no,jdbcType=VARCHAR},
+      </if>
+      <if test="trx_no != null" >
+        trx_no = #{trx_no,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_order_no != null" >
+        bank_order_no = #{bank_order_no,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_trx_no != null" >
+        bank_trx_no = #{bank_trx_no,jdbcType=VARCHAR},
+      </if>
+      <if test="merchant_name != null" >
+        merchant_name = #{merchant_name,jdbcType=VARCHAR},
+      </if>
+      <if test="merchant_no != null" >
+        merchant_no = #{merchant_no,jdbcType=VARCHAR},
+      </if>
+      <if test="payer_user_no != null" >
+        payer_user_no = #{payer_user_no,jdbcType=VARCHAR},
+      </if>
+      <if test="payer_name != null" >
+        payer_name = #{payer_name,jdbcType=VARCHAR},
+      </if>
+      <if test="payer_pay_amount != null" >
+        payer_pay_amount = #{payer_pay_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="payer_fee != null" >
+        payer_fee = #{payer_fee,jdbcType=DECIMAL},
+      </if>
+      <if test="payer_account_type != null" >
+        payer_account_type = #{payer_account_type,jdbcType=VARCHAR},
+      </if>
+      <if test="receiver_user_no != null" >
+        receiver_user_no = #{receiver_user_no,jdbcType=VARCHAR},
+      </if>
+      <if test="receiver_name != null" >
+        receiver_name = #{receiver_name,jdbcType=VARCHAR},
+      </if>
+      <if test="receiver_pay_amount != null" >
+        receiver_pay_amount = #{receiver_pay_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="receiver_fee != null" >
+        receiver_fee = #{receiver_fee,jdbcType=DECIMAL},
+      </if>
+      <if test="receiver_account_type != null" >
+        receiver_account_type = #{receiver_account_type,jdbcType=VARCHAR},
+      </if>
+      <if test="order_ip != null" >
+        order_ip = #{order_ip,jdbcType=VARCHAR},
+      </if>
+      <if test="order_referer_url != null" >
+        order_referer_url = #{order_referer_url,jdbcType=VARCHAR},
+      </if>
+      <if test="order_amount != null" >
+        order_amount = #{order_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="plat_income != null" >
+        plat_income = #{plat_income,jdbcType=DECIMAL},
+      </if>
+      <if test="fee_rate != null" >
+        fee_rate = #{fee_rate,jdbcType=DECIMAL},
+      </if>
+      <if test="plat_cost != null" >
+        plat_cost = #{plat_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="plat_profit != null" >
+        plat_profit = #{plat_profit,jdbcType=DECIMAL},
+      </if>
+      <if test="return_url != null" >
+        return_url = #{return_url,jdbcType=VARCHAR},
+      </if>
+      <if test="notify_url != null" >
+        notify_url = #{notify_url,jdbcType=VARCHAR},
+      </if>
+      <if test="pay_way_code != null" >
+        pay_way_code = #{pay_way_code,jdbcType=VARCHAR},
+      </if>
+      <if test="pay_way_name != null" >
+        pay_way_name = #{pay_way_name,jdbcType=VARCHAR},
+      </if>
+      <if test="pay_success_time != null" >
+        pay_success_time = #{pay_success_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="complete_time != null" >
+        complete_time = #{complete_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="is_refund != null" >
+        is_refund = #{is_refund,jdbcType=VARCHAR},
+      </if>
+      <if test="refund_times != null" >
+        refund_times = #{refund_times,jdbcType=INTEGER},
+      </if>
+      <if test="success_refund_amount != null" >
+        success_refund_amount = #{success_refund_amount,jdbcType=DECIMAL},
+      </if>
+      <if test="trx_type != null" >
+        trx_type = #{trx_type,jdbcType=VARCHAR},
+      </if>
+      <if test="order_from != null" >
+        order_from = #{order_from,jdbcType=VARCHAR},
+      </if>
+      <if test="pay_type_code != null" >
+        pay_type_code = #{pay_type_code,jdbcType=VARCHAR},
+      </if>
+      <if test="pay_type_name != null" >
+        pay_type_name = #{pay_type_name,jdbcType=VARCHAR},
+      </if>
+      <if test="fund_into_type != null" >
+        fund_into_type = #{fund_into_type,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="field1 != null" >
+        field1 = #{field1,jdbcType=VARCHAR},
+      </if>
+      <if test="field2 != null" >
+        field2 = #{field2,jdbcType=VARCHAR},
+      </if>
+      <if test="field3 != null" >
+        field3 = #{field3,jdbcType=VARCHAR},
+      </if>
+      <if test="field4 != null" >
+        field4 = #{field4,jdbcType=VARCHAR},
+      </if>
+      <if test="field5 != null" >
+        field5 = #{field5,jdbcType=VARCHAR},
+      </if>
+      <if test="bank_return_msg != null" >
+        bank_return_msg = #{bank_return_msg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.xxpay.dal.dao.model.RpTradePaymentRecord" >
+    update rp_trade_payment_record
+    set version = #{version,jdbcType=INTEGER},
+      create_time = #{create_time,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      editor = #{editor,jdbcType=VARCHAR},
+      creater = #{creater,jdbcType=VARCHAR},
+      edit_time = #{edit_time,jdbcType=TIMESTAMP},
+      product_name = #{product_name,jdbcType=VARCHAR},
+      merchant_order_no = #{merchant_order_no,jdbcType=VARCHAR},
+      trx_no = #{trx_no,jdbcType=VARCHAR},
+      bank_order_no = #{bank_order_no,jdbcType=VARCHAR},
+      bank_trx_no = #{bank_trx_no,jdbcType=VARCHAR},
+      merchant_name = #{merchant_name,jdbcType=VARCHAR},
+      merchant_no = #{merchant_no,jdbcType=VARCHAR},
+      payer_user_no = #{payer_user_no,jdbcType=VARCHAR},
+      payer_name = #{payer_name,jdbcType=VARCHAR},
+      payer_pay_amount = #{payer_pay_amount,jdbcType=DECIMAL},
+      payer_fee = #{payer_fee,jdbcType=DECIMAL},
+      payer_account_type = #{payer_account_type,jdbcType=VARCHAR},
+      receiver_user_no = #{receiver_user_no,jdbcType=VARCHAR},
+      receiver_name = #{receiver_name,jdbcType=VARCHAR},
+      receiver_pay_amount = #{receiver_pay_amount,jdbcType=DECIMAL},
+      receiver_fee = #{receiver_fee,jdbcType=DECIMAL},
+      receiver_account_type = #{receiver_account_type,jdbcType=VARCHAR},
+      order_ip = #{order_ip,jdbcType=VARCHAR},
+      order_referer_url = #{order_referer_url,jdbcType=VARCHAR},
+      order_amount = #{order_amount,jdbcType=DECIMAL},
+      plat_income = #{plat_income,jdbcType=DECIMAL},
+      fee_rate = #{fee_rate,jdbcType=DECIMAL},
+      plat_cost = #{plat_cost,jdbcType=DECIMAL},
+      plat_profit = #{plat_profit,jdbcType=DECIMAL},
+      return_url = #{return_url,jdbcType=VARCHAR},
+      notify_url = #{notify_url,jdbcType=VARCHAR},
+      pay_way_code = #{pay_way_code,jdbcType=VARCHAR},
+      pay_way_name = #{pay_way_name,jdbcType=VARCHAR},
+      pay_success_time = #{pay_success_time,jdbcType=TIMESTAMP},
+      complete_time = #{complete_time,jdbcType=TIMESTAMP},
+      is_refund = #{is_refund,jdbcType=VARCHAR},
+      refund_times = #{refund_times,jdbcType=INTEGER},
+      success_refund_amount = #{success_refund_amount,jdbcType=DECIMAL},
+      trx_type = #{trx_type,jdbcType=VARCHAR},
+      order_from = #{order_from,jdbcType=VARCHAR},
+      pay_type_code = #{pay_type_code,jdbcType=VARCHAR},
+      pay_type_name = #{pay_type_name,jdbcType=VARCHAR},
+      fund_into_type = #{fund_into_type,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      field1 = #{field1,jdbcType=VARCHAR},
+      field2 = #{field2,jdbcType=VARCHAR},
+      field3 = #{field3,jdbcType=VARCHAR},
+      field4 = #{field4,jdbcType=VARCHAR},
+      field5 = #{field5,jdbcType=VARCHAR},
+      bank_return_msg = #{bank_return_msg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

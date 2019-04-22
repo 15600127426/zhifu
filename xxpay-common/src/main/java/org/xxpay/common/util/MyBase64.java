@@ -102,11 +102,4 @@ public class MyBase64 {
 			else if (b0 == '/')			b = 63;
 			return b;
 	}
-	/**
-	*  A simple test.cache that encodes and decodes the first commandline argument.
-	*/
-	public final static void main(String args[]) throws Exception {
-		String s = "xxpay做最好的开源聚合支付系统";
-		System.out.println(MyBase64.encode(s.getBytes()));
-	}
 }
